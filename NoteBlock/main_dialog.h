@@ -15,6 +15,8 @@ public:
     explicit MainDialog(QWidget *parent = nullptr);
     ~MainDialog();
 
+private slots:
+
 private:
     Ui::MainDialog *ui;
 
