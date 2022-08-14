@@ -17,6 +17,8 @@ public:
 
 private slots:
 
+    void on_openSaveBtn_clicked();
+
 private:
     Ui::MainDialog *ui;
 

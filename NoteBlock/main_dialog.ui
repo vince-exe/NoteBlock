@@ -17,7 +17,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>NoteBlock</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QDialog {
@@ -64,7 +64,6 @@
    </property>
    <property name="styleSheet">
     <string notr="true">QLabel {
-	
 	background-color: rgb(26, 26, 26);
 }</string>
    </property>
@@ -118,27 +117,29 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QLabel" name="zoomLabel">
+  <widget class="QPushButton" name="openSaveBtn">
    <property name="geometry">
     <rect>
      <x>530</x>
      <y>591</y>
-     <width>111</width>
+     <width>121</width>
      <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QLabel {
+    <string notr="true">QPushButton {
 	font: 600 13pt &quot;Segoe UI Variable Text Semibold&quot;;
 	color: rgb(218, 218, 218);
 	padding-bottom: 4px;
+	border: none;
+}
+
+QPushButton::hover {
+	background-color: rgb(39, 39, 39);
 }</string>
    </property>
    <property name="text">
-    <string/>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
+    <string>Open | Save</string>
    </property>
   </widget>
  </widget>
