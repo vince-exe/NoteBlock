@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>588</width>
-    <height>533</height>
+    <height>587</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>80</y>
+     <y>130</y>
      <width>401</width>
      <height>441</height>
     </rect>
@@ -69,10 +69,87 @@
 	color: rgb(218, 218, 218);
 	border: 5px solid rgb(39, 39, 39);
 	background-color: rgb(59, 59, 59);
+}
+
+QPushButton::hover {
+	background-color: rgb(84, 84, 84);
 }</string>
    </property>
    <property name="text">
     <string>Reset</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="fileNameBox">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>70</y>
+     <width>401</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+	font: 600 11pt &quot;Verdana Pro Cond Semibold&quot;;
+	color: rgb(218, 218, 218);
+	border: 5px solid rgb(39, 39, 39);
+	background-color: rgb(59, 59, 59);
+	padding-left: 10px;
+	letter-spacing: 1px;
+}</string>
+   </property>
+   <property name="placeholderText">
+    <string>File Name</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="doneBtn">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>509</y>
+     <width>121</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+	font: 600 12pt &quot;Verdana Pro Cond Semibold&quot;;
+	color: rgb(218, 218, 218);
+	border: 5px solid rgb(39, 39, 39);
+	background-color: rgb(59, 59, 59);
+}
+
+QPushButton::hover {
+	background-color: rgb(84, 84, 84);
+}</string>
+   </property>
+   <property name="text">
+    <string>Done</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="goBtn">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>70</y>
+     <width>83</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+	font: 600 12pt &quot;Verdana Pro Cond Semibold&quot;;
+	color: rgb(218, 218, 218);
+	border: 5px solid rgb(39, 39, 39);
+	background-color: rgb(59, 59, 59);
+}
+
+QPushButton::hover {
+	background-color: rgb(84, 84, 84);
+}</string>
+   </property>
+   <property name="text">
+    <string>Go</string>
    </property>
   </widget>
  </widget>

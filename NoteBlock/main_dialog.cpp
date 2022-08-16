@@ -7,6 +7,8 @@
 /* forms */
 #include "options_menu_dialog.h"
 
+#include "options_dialog_utilities.h"
+
 MainDialog::MainDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::MainDialog) {
@@ -34,6 +36,9 @@ void MainDialog::resizeEvent(QResizeEvent *event) {
 
 /* open the options dialog */
 void MainDialog::on_openSaveBtn_clicked() {
+    /* store the content of the message box in the buffer */
+    messageBuffer = ui->textBox->toPlainText().toStdString();
+
     OptionsMenuDialog optionDialog;
     optionDialog.setModal(true);
     optionDialog.show();

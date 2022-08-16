@@ -23,6 +23,12 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_fileNameBox_textChanged(const QString &arg1);
+
+    void on_goBtn_clicked();
+
+    void on_doneBtn_clicked();
+
 private:
     Ui::SaveAsDialog *ui;
     QFileSystemModel* dirmodel = new QFileSystemModel(this);;
