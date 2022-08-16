@@ -15,6 +15,15 @@ public:
     explicit OptionsMenuDialog(QWidget *parent = nullptr);
     ~OptionsMenuDialog();
 
+private slots:
+    void on_saveAsBtn_clicked();
+
+    void on_saveBtn_clicked();
+
+    void on_openBtn_clicked();
+
+    void on_newBtn_clicked();
+
 private:
     Ui::OptionsMenuDialog *ui;
 };
