@@ -11,18 +11,21 @@ CONFIG += c++17
 SOURCES += \
     main.cpp \
     main_dialog.cpp \
+    options_dialog.cpp \
     options_dialog_utilities.cpp \
     options_menu_dialog.cpp \
     save_as_dialog.cpp
 
 HEADERS += \
     main_dialog.h \
+    options_dialog.h \
     options_dialog_utilities.h \
     options_menu_dialog.h \
     save_as_dialog.h
 
 FORMS += \
     main_dialog.ui \
+    options_dialog.ui \
     options_menu_dialog.ui \
     save_as_dialog.ui
 

@@ -4,6 +4,9 @@
 #include <QShortcut>
 #include <QPushButton>
 
+#include <windows.h>
+#include <lmcons.h>
+
 /* forms */
 #include "options_menu_dialog.h"
 
@@ -16,6 +19,15 @@ MainDialog::MainDialog(QWidget *parent) :
 
     ui->widthLabel->setText("Width: " + QString::number(this->size().width()));
     ui->heightLabel->setText("Height: " + QString::number(this->size().height()));
+
+    /* get the host name */
+    TCHAR username[UNLEN + 1];
+    DWORD username_len = UNLEN + 1;
+
+    GetUserName((TCHAR*)username, &username_len);
+
+    QString hostName = QString::fromWCharArray(username);
+    defaultPathOption = "C:/Users/" + hostName;
 }
 
 MainDialog::~MainDialog() {
@@ -43,5 +55,10 @@ void MainDialog::on_openSaveBtn_clicked() {
     optionDialog.setModal(true);
     optionDialog.show();
     optionDialog.exec();
+
+    if(fileCreated) {
+        ui->textBox->clear();
+        fileCreated = false;
+    }
 }
 

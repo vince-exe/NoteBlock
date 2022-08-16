@@ -7,8 +7,22 @@
 #include <iostream>
 #include <string>
 
+/* deault options */
+extern QString defaultPathOption;
+
+extern QString defaultFontStyle;
+
+extern QString defaultTextColor;
+
+extern QString defaultBackColor;
+
+extern int defaultFontSize;
+
 /* used to store the content in the message box */
 extern std::string messageBuffer;
+
+/* used to check if the user has successfully created the file */
+extern bool fileCreated;
 
 /* return true if the given path exist */
 bool IsPathExist(const std::string &s);

@@ -16,7 +16,8 @@
   <property name="styleSheet">
    <string notr="true">QDialog {
 	background-color: rgb(26, 26, 26);
-}</string>
+}
+</string>
   </property>
   <widget class="QTreeView" name="treeView">
    <property name="geometry">

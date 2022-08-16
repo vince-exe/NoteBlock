@@ -3,13 +3,9 @@
 
 #include <QKeyEvent>
 
-#include <windows.h>
-#include <lmcons.h>
 #include <iostream>
 
 #include "options_dialog_utilities.h"
-
-QString defaultPath = "";
 
 void SaveAsDialog::keyPressEvent(QKeyEvent *event) {
    if(event->key() == Qt::Key_Return && ui->pathBox->hasFocus())  {
@@ -19,8 +15,8 @@ void SaveAsDialog::keyPressEvent(QKeyEvent *event) {
       }
       else {
           warningMessage("Warning", "Please enter a correct path");
-          ui->pathBox->setText(defaultPath);
-          ui->treeView->setRootIndex(dirmodel->index(defaultPath));
+          ui->pathBox->setText(defaultPathOption);
+          ui->treeView->setRootIndex(dirmodel->index(defaultPathOption));
           return;
       }
    }
@@ -33,23 +29,15 @@ SaveAsDialog::SaveAsDialog(QWidget *parent) :
     ui->setupUi(this);
     this->setWindowFlags(Qt::Window | Qt::MSWindowsFixedSizeDialogHint);
 
-    TCHAR username[UNLEN + 1];
-    DWORD username_len = UNLEN + 1;
-
-    GetUserName((TCHAR*)username, &username_len);
-
-    QString hostName = QString::fromWCharArray(username);
-    defaultPath = "C:/Users/" + hostName;
-
-    dirmodel->setRootPath(defaultPath);
+    dirmodel->setRootPath(defaultPathOption);
     dirmodel->setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);
 
     ui->treeView->setModel(dirmodel);
-    ui->treeView->setRootIndex(dirmodel->index(defaultPath));
+    ui->treeView->setRootIndex(dirmodel->index(defaultPathOption));
     ui->treeView->setColumnWidth(0, 175);
     ui->treeView->header()->hideSection(1);
 
-    ui->pathBox->setText(defaultPath);
+    ui->pathBox->setText(defaultPathOption);
 }
 
 SaveAsDialog::~SaveAsDialog() {
@@ -63,10 +51,10 @@ void SaveAsDialog::on_treeView_clicked(const QModelIndex &index) {
 
 void SaveAsDialog::on_pushButton_clicked() {
     /* set the default path as root path */
-    dirmodel->setRootPath(defaultPath);
+    dirmodel->setRootPath(defaultPathOption);
 
-    ui->treeView->setRootIndex(dirmodel->index(defaultPath));
-    ui->pathBox->setText(defaultPath);
+    ui->treeView->setRootIndex(dirmodel->index(defaultPathOption));
+    ui->pathBox->setText(defaultPathOption);
 }
 
 void SaveAsDialog::on_fileNameBox_textChanged(const QString &arg1) {
@@ -81,8 +69,8 @@ void SaveAsDialog::on_goBtn_clicked() {
     }
     else {
         warningMessage("Warning", "Please enter a correct path");
-        ui->pathBox->setText(defaultPath);
-        ui->treeView->setRootIndex(dirmodel->index(defaultPath));
+        ui->pathBox->setText(defaultPathOption);
+        ui->treeView->setRootIndex(dirmodel->index(defaultPathOption));
         return;
     }
 }
@@ -96,6 +84,8 @@ void SaveAsDialog::on_doneBtn_clicked() {
     if(f) {
         warningMessage("Warning", "There is already a file named " + ui->fileNameBox->text().toStdString());
         ui->fileNameBox->clear();
+
+        fileCreated = false;
         return;
     }
     fclose(f);
@@ -104,8 +94,10 @@ void SaveAsDialog::on_doneBtn_clicked() {
     if(!f) {
         warningMessage("Warning", "The application can't create the file in the given path");
         ui->fileNameBox->clear();
-        ui->pathBox->setText(defaultPath);
-        ui->treeView->setRootIndex(dirmodel->index(defaultPath));
+        ui->pathBox->setText(defaultPathOption);
+        ui->treeView->setRootIndex(dirmodel->index(defaultPathOption));
+
+        fileCreated = false;
         return;
     }
 
@@ -113,10 +105,11 @@ void SaveAsDialog::on_doneBtn_clicked() {
     storeInformations(f, messageBuffer);
     fclose(f);
 
-    ui->pathBox->setText(defaultPath);
-    ui->treeView->setRootIndex(dirmodel->index(defaultPath));
+    ui->pathBox->setText(defaultPathOption);
+    ui->treeView->setRootIndex(dirmodel->index(defaultPathOption));
     ui->fileNameBox->clear();
 
     infoMessage("Success", "Successfully saved the file");
+    fileCreated = true;
     this->close();
 }

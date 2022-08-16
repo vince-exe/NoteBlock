@@ -3,6 +3,7 @@
 
 /* forms */
 #include "save_as_dialog.h"
+#include "options_dialog.h"
 
 OptionsMenuDialog::OptionsMenuDialog(QWidget *parent) :
     QDialog(parent),
@@ -40,3 +41,12 @@ void OptionsMenuDialog::on_openBtn_clicked() {
 void OptionsMenuDialog::on_newBtn_clicked() {
 
 }
+
+/* options button */
+void OptionsMenuDialog::on_optionsBtn_clicked() {
+    OptionsDialog optionsDialog;
+    optionsDialog.setModal(true);
+    optionsDialog.show();
+    optionsDialog.exec();
+}
+

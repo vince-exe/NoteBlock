@@ -24,6 +24,8 @@ private slots:
 
     void on_newBtn_clicked();
 
+    void on_optionsBtn_clicked();
+
 private:
     Ui::OptionsMenuDialog *ui;
 };
