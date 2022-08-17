@@ -9,12 +9,17 @@ QString defaultTextColor = "rgb(218, 218, 218)";
 
 QString defaultBackColor = "rgb(39, 39, 39)";
 
+QString defTextColorInteger = "218";
+QString defBackColorInteger = "39";
+
 int defaultFontSize = 18;
 
 /* used to store the content in the message box */
 std::string messageBuffer;
 
 bool fileCreated = false;
+
+bool changeTextColor = false;
 
 bool IsPathExist(const std::string &s) {
   struct stat buffer;

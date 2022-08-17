@@ -15,6 +15,15 @@ public:
     explicit OptionsDialog(QWidget *parent = nullptr);
     ~OptionsDialog();
 
+private slots:
+    void on_resetBtn_clicked();
+
+    void on_doneBtn_clicked();
+
+    void on_currentTextColorLabel_clicked();
+
+    void on_currentBackColorLabel_clicked();
+
 private:
     Ui::OptionsDialog *ui;
 };

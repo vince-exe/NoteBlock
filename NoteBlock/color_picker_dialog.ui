@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ColorPickerDialog</class>
+ <widget class="QDialog" name="ColorPickerDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>463</width>
+    <height>410</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>ColorPicker</string>
+  </property>
+  <widget class="QLabel" name="redLabel">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>100</y>
+     <width>71</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QDialog {
+	font: 20pt &quot;Arial Rounded MT Bold&quot;;
+}</string>
+   </property>
+   <property name="text">
+    <string>R</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="greenLabel">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>170</y>
+     <width>71</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QDialog {
+	font: 20pt &quot;Arial Rounded MT Bold&quot;;
+}</string>
+   </property>
+   <property name="text">
+    <string>G</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="blueLabel">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>240</y>
+     <width>71</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QDialog {
+	font: 20pt &quot;Arial Rounded MT Bold&quot;;
+}</string>
+   </property>
+   <property name="text">
+    <string>B</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="resultLabel">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>330</y>
+     <width>271</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string>Choose your color</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QSlider" name="reedSlider">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>110</y>
+     <width>211</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>255</number>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QSlider" name="greenSlider">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>180</y>
+     <width>211</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>255</number>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QSlider" name="blueSlider">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>250</y>
+     <width>211</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>255</number>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="redSpinBox">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>100</y>
+     <width>81</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>255</number>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="greenSpinBox">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>170</y>
+     <width>81</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>255</number>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="blueSpinBox">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>240</y>
+     <width>81</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>255</number>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="doneBn">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>20</y>
+     <width>101</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+	border: none;
+	color: '#000000';
+	font: 700 12pt &quot;Segoe UI&quot;;
+	letter-spacing: 0.5px;
+	background-color: rgb(204, 204, 204);
+}</string>
+   </property>
+   <property name="text">
+    <string>Done</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="resetBtn">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>20</y>
+     <width>101</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+	border: none;
+	color: '#000000';
+	font: 700 12pt &quot;Segoe UI&quot;;
+	letter-spacing: 0.5px;
+	background-color: rgb(204, 204, 204);
+}</string>
+   </property>
+   <property name="text">
+    <string>Reset</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
