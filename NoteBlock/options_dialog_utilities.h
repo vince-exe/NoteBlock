@@ -16,9 +16,14 @@ extern QString defaultTextColor;
 
 extern QString defaultBackColor;
 
-/* used to rapresent the colors in integer format */
-extern QString defTextColorInteger;
-extern QString defBackColorInteger;
+/* used to rapresent the colors in integer RGB */
+extern int defTextColorR;
+extern int defTextColorG;
+extern int defTextColorB;
+
+extern int defBackColorR;
+extern int defBackColorG;
+extern int defBackColorB;
 
 extern int defaultFontSize;
 

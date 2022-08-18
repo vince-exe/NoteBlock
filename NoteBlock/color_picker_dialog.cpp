@@ -23,24 +23,24 @@ ColorPickerDialog::ColorPickerDialog(QWidget *parent) :
     ui->blueSpinBox->setAlignment(Qt::AlignCenter);
 
     if(changeTextColor) {
-        ui->redSpinBox->setValue(defTextColorInteger.toInt());
-        ui->reedSlider->setValue(defTextColorInteger.toInt());
+        ui->redSpinBox->setValue(defTextColorR);
+        ui->reedSlider->setValue(defTextColorR);
 
-        ui->greenSpinBox->setValue(defTextColorInteger.toInt());
-        ui->greenSlider->setValue(defTextColorInteger.toInt());
+        ui->greenSpinBox->setValue(defTextColorG);
+        ui->greenSlider->setValue(defTextColorG);
 
-        ui->blueSpinBox->setValue(defTextColorInteger.toInt());
-        ui->blueSlider->setValue(defTextColorInteger.toInt());
+        ui->blueSpinBox->setValue(defTextColorB);
+        ui->blueSlider->setValue(defTextColorB);
     }
     else {
-        ui->redSpinBox->setValue(defBackColorInteger.toInt());
-        ui->reedSlider->setValue(defBackColorInteger.toInt());
+        ui->redSpinBox->setValue(defBackColorR);
+        ui->reedSlider->setValue(defBackColorR);
 
-        ui->greenSpinBox->setValue(defBackColorInteger.toInt());
-        ui->greenSlider->setValue(defBackColorInteger.toInt());
+        ui->greenSpinBox->setValue(defBackColorG);
+        ui->greenSlider->setValue(defBackColorG);
 
-        ui->blueSpinBox->setValue(defBackColorInteger.toInt());
-        ui->blueSlider->setValue(defBackColorInteger.toInt());
+        ui->blueSpinBox->setValue(defBackColorB);
+        ui->blueSlider->setValue(defBackColorB);
     }
 }
 
@@ -116,3 +116,77 @@ void ColorPickerDialog::on_blueSpinBox_valueChanged(int arg1) {
         ui->resultLabel->setStyleSheet("background-color: " + getRGB(ui->redSpinBox->value(), ui->greenSpinBox->value(), arg1) + ";" + "color: " + defaultTextColor + ";font: 600 16pt Segoe UI Semibold");
     }
 }
+
+/* reset button */
+void ColorPickerDialog::on_resetBtn_clicked() {
+    QMessageBox confirmBox;
+
+    confirmBox.setText(tr("The application will proceed with resetting the options, are u sure that you want to continue?"));
+    confirmBox.addButton(tr("Yes"), QMessageBox::YesRole);
+
+    QAbstractButton* noBtn = confirmBox.addButton(tr("No"), QMessageBox::YesRole);
+    confirmBox.exec();
+
+    if(confirmBox.clickedButton() == noBtn) { return; }
+
+    if(changeTextColor) {
+        defTextColorR = 218;
+        defTextColorG = 218;
+        defTextColorB = 218;
+
+        defaultTextColor = "rgb(218,218,218)";
+
+        ui->redSpinBox->setValue(defTextColorR);
+        ui->reedSlider->setValue(defTextColorR);
+
+        ui->greenSpinBox->setValue(defTextColorG);
+        ui->greenSlider->setValue(defTextColorG);
+
+        ui->blueSpinBox->setValue(defTextColorB);
+        ui->blueSlider->setValue(defTextColorB);
+    }
+    else {
+        defBackColorR = 39;
+        defBackColorG = 39;
+        defBackColorB = 39;
+
+        defaultBackColor = "rgb(39,39,39)";
+
+        ui->redSpinBox->setValue(defBackColorR);
+        ui->reedSlider->setValue(defBackColorR);
+
+        ui->greenSpinBox->setValue(defBackColorG);
+        ui->greenSlider->setValue(defBackColorG);
+
+        ui->blueSpinBox->setValue(defBackColorB);
+        ui->blueSlider->setValue(defBackColorB);
+    }
+
+    ui->resultLabel->setStyleSheet("color: " + defaultTextColor + ";" + "background-color: " + defaultBackColor + ";font: 600 16pt Segoe UI Semibold");
+
+}
+
+/* Done button */
+void ColorPickerDialog::on_doneBn_clicked() {
+    if(changeTextColor) {
+        defaultTextColor = "rgb(" + QString::number(ui->redSpinBox->value()) + ",";
+        defaultTextColor.append(QString::number(ui->greenSpinBox->value()) + ",");
+        defaultTextColor.append(QString::number(ui->blueSpinBox->value()) + ")");
+
+        defTextColorR = ui->redSpinBox->value();
+        defTextColorG = ui->greenSpinBox->value();
+        defTextColorB = ui->blueSpinBox->value();
+    }
+    else {
+        defaultBackColor = "rgb(" + QString::number(ui->redSpinBox->value()) + ",";
+        defaultBackColor.append(QString::number(ui->greenSpinBox->value()) + ",");
+        defaultBackColor.append(QString::number(ui->blueSpinBox->value()) + ")");
+
+        defBackColorR = ui->redSpinBox->value();
+        defBackColorG = ui->greenSpinBox->value();
+        defBackColorB = ui->blueSpinBox->value();
+    }
+
+    this->close(); return;
+}
+

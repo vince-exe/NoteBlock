@@ -5,12 +5,20 @@ QString defaultPathOption;
 
 QString defaultFontStyle = "Segoe UI Variable Text Semibold";
 
-QString defaultTextColor = "rgb(218, 218, 218)";
+QString defaultTextColor = "rgb(218,218,218)";
 
-QString defaultBackColor = "rgb(39, 39, 39)";
+QString defaultBackColor = "rgb(39,39,39)";
 
-QString defTextColorInteger = "218";
-QString defBackColorInteger = "39";
+int defTextColorR = 218;
+int defTextColorG = 218;
+int defTextColorB = 218;
+
+int defBackColorR = 39;
+int defBackColorG = 39;
+int defBackColorB = 39;
+
+QString currentTextColor = "";
+QString currentBackColor = "";
 
 int defaultFontSize = 18;
 

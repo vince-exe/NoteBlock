@@ -31,6 +31,10 @@ private slots:
 
     void on_blueSpinBox_valueChanged(int arg1);
 
+    void on_resetBtn_clicked();
+
+    void on_doneBn_clicked();
+
 private:
     Ui::ColorPickerDialog *ui;
 };

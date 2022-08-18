@@ -47,6 +47,9 @@ void OptionsDialog::on_currentTextColorLabel_clicked() {
     colorPickerDialog.setModal(true);
     colorPickerDialog.show();
     colorPickerDialog.exec();
+
+    /* reset the text color label */
+    ui->currentTextColorLabel->setStyleSheet("background-color: " + defaultTextColor);
 }
 
 /* when the user wants to change the background color */
@@ -57,5 +60,8 @@ void OptionsDialog::on_currentBackColorLabel_clicked() {
     colorPickerDialog.setModal(true);
     colorPickerDialog.show();
     colorPickerDialog.exec();
+
+    /* reset the background color label */
+    ui->currentBackColorLabel->setStyleSheet("background-color: " + defaultBackColor);
 }
 
