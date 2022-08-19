@@ -7,26 +7,6 @@
 #include <iostream>
 #include <string>
 
-/* deault options */
-extern QString defaultPathOption;
-
-extern QString defaultFontStyle;
-
-extern QString defaultTextColor;
-
-extern QString defaultBackColor;
-
-/* used to rapresent the colors in integer RGB */
-extern int defTextColorR;
-extern int defTextColorG;
-extern int defTextColorB;
-
-extern int defBackColorR;
-extern int defBackColorG;
-extern int defBackColorB;
-
-extern int defaultFontSize;
-
 /* used to store the content in the message box */
 extern std::string messageBuffer;
 
@@ -44,6 +24,9 @@ void warningMessage(const std::string &title, const std::string &warningMessage)
 
 /* create an InfoBox ( 550 300 ) with the given title and message */
 void infoMessage(const std::string &title, const std::string &infoMessage);
+
+/* ceate an ErrorBox ( 550 300 ) with the given title and message */
+void errorBox(const std::string &title, const std::string &errorMessage);
 
 /* store the informations in the file */
 void storeInformations(FILE* f, std::string& buffer);

@@ -5,6 +5,8 @@
 
 #include "options_dialog_utilities.h"
 
+#include "options.h"
+
 /* forms */
 #include "color_picker_dialog.h"
 
@@ -14,15 +16,16 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
     ui->setupUi(this);
 
     /* set the default path */
-    ui->defaultPath->setText(defaultPathOption);
+    ui->defaultPath->setText(Options::defaultPathOption);
     /* set the default font */
-    ui->fontBox->setValue(defaultFontSize);
+    ui->fontBox->setValue(Options::defaultFontSize);
     /* set the default text color */
-    ui->currentTextColorLabel->setStyleSheet("background-color: " + defaultTextColor);
+
+    ui->currentTextColorLabel->setStyleSheet("background-color: " + Options::defaultTextColor + ";" + "border: none");
     /* set the default background color */
-    ui->currentBackColorLabel->setStyleSheet("background-color: " + defaultBackColor);
+    ui->currentBackColorLabel->setStyleSheet("background-color: " + Options::defaultBackColor + ";" + "border: none");
     /* set the font style box */
-    ui->fontStyleBox->setCurrentFont(QFont(defaultFontStyle));
+    ui->fontStyleBox->setCurrentFont(QFont(Options::defaultFontStyle));
 }
 
 OptionsDialog::~OptionsDialog() {
@@ -48,8 +51,9 @@ void OptionsDialog::on_currentTextColorLabel_clicked() {
     colorPickerDialog.show();
     colorPickerDialog.exec();
 
-    /* reset the text color label */
-    ui->currentTextColorLabel->setStyleSheet("background-color: " + defaultTextColor);
+    /* update the color labels */
+    ui->currentTextColorLabel->setStyleSheet("background-color: " + Options::defaultTextColor);
+    ui->currentBackColorLabel->setStyleSheet("background-color: " + Options::defaultBackColor);
 }
 
 /* when the user wants to change the background color */
@@ -61,7 +65,8 @@ void OptionsDialog::on_currentBackColorLabel_clicked() {
     colorPickerDialog.show();
     colorPickerDialog.exec();
 
-    /* reset the background color label */
-    ui->currentBackColorLabel->setStyleSheet("background-color: " + defaultBackColor);
+    /* update the color labels */
+    ui->currentTextColorLabel->setStyleSheet("background-color: " + Options::defaultTextColor);
+    ui->currentBackColorLabel->setStyleSheet("background-color: " + Options::defaultBackColor);
 }
 

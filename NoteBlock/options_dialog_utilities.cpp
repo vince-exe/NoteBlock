@@ -1,27 +1,5 @@
 #include "options_dialog_utilities.h"
 
-/* deault options */
-QString defaultPathOption;
-
-QString defaultFontStyle = "Segoe UI Variable Text Semibold";
-
-QString defaultTextColor = "rgb(218,218,218)";
-
-QString defaultBackColor = "rgb(39,39,39)";
-
-int defTextColorR = 218;
-int defTextColorG = 218;
-int defTextColorB = 218;
-
-int defBackColorR = 39;
-int defBackColorG = 39;
-int defBackColorB = 39;
-
-QString currentTextColor = "";
-QString currentBackColor = "";
-
-int defaultFontSize = 18;
-
 /* used to store the content in the message box */
 std::string messageBuffer;
 
@@ -49,8 +27,15 @@ void storeInformations(FILE *f, std::string &buffer) {
 }
 
 void infoMessage(const std::string &title, const std::string &infoMessage) {
-    QMessageBox warningBox;
+    QMessageBox infoBox;
 
-    warningBox.information(0, QString::fromStdString(title), QString::fromStdString(infoMessage));
-    warningBox.setFixedSize(550, 300);
+    infoBox.information(0, QString::fromStdString(title), QString::fromStdString(infoMessage));
+    infoBox.setFixedSize(550, 300);
+}
+
+void errorBox(const std::string &title, const std::string &errorMessage) {
+    QMessageBox errorBox;
+
+    errorBox.information(0, QString::fromStdString(title), QString::fromStdString(errorMessage));
+    errorBox.setFixedSize(550, 300);
 }

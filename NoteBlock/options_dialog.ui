@@ -267,10 +267,7 @@ QPushButton::hover {
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QPushButton {
-	background-color: rgb(26, 26, 26);
-	border: none;
-}</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string/>
@@ -286,10 +283,7 @@ QPushButton::hover {
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QPushButton {
-	background-color: rgb(26, 26, 26);
-	border: none;
-}</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string/>

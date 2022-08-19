@@ -7,6 +7,8 @@
 #include <windows.h>
 #include <lmcons.h>
 
+#include "options.h"
+
 /* forms */
 #include "options_menu_dialog.h"
 
@@ -27,7 +29,18 @@ MainDialog::MainDialog(QWidget *parent) :
     GetUserName((TCHAR*)username, &username_len);
 
     QString hostName = QString::fromWCharArray(username);
-    defaultPathOption = "C:/Users/" + hostName;
+    Options::defaultPathOption = "C:/Users/" + hostName;
+
+    /* open the option file */
+    FILE* f = fopen(Options::sysCurrentOptionsPath, "r");
+
+    if(!f) {
+        errorBox("Error", "The application failed to load the system files");
+        this->close(); return;
+    }
+
+    Options::readOptions(f);
+    fclose(f);
 }
 
 MainDialog::~MainDialog() {

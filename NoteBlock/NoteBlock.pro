@@ -12,6 +12,7 @@ SOURCES += \
     color_picker_dialog.cpp \
     main.cpp \
     main_dialog.cpp \
+    options.cpp \
     options_dialog.cpp \
     options_dialog_utilities.cpp \
     options_menu_dialog.cpp \
@@ -20,6 +21,7 @@ SOURCES += \
 HEADERS += \
     color_picker_dialog.h \
     main_dialog.h \
+    options.h \
     options_dialog.h \
     options_dialog_utilities.h \
     options_menu_dialog.h \
