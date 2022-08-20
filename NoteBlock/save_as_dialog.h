@@ -29,6 +29,8 @@ private slots:
 
     void on_doneBtn_clicked();
 
+    void on_doOptionBtn_clicked();
+
 private:
     Ui::SaveAsDialog *ui;
     QFileSystemModel* dirmodel = new QFileSystemModel(this);;

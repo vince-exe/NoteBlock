@@ -70,7 +70,6 @@ void OptionsDialog::on_resetBtn_clicked() {
 
     /* reset the widgets */
     ui->defaultPath->setText(Options::defaultPathOption);
-    qDebug() << Options::defaultFontSize;
     ui->fontBox->setValue(Options::defaultFontSize);
     ui->fontStyleBox->setEditText(Options::defaultFontStyle);
     ui->currentTextColorLabel->setStyleSheet("background-color: " + Options::defaultTextColor);

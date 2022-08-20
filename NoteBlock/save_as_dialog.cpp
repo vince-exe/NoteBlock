@@ -2,6 +2,7 @@
 #include "ui_save_as_dialog.h"
 
 #include <QKeyEvent>
+#include <QModelIndex>
 
 #include <iostream>
 
@@ -33,6 +34,8 @@ SaveAsDialog::SaveAsDialog(QWidget *parent) :
 
     dirmodel->setRootPath(Options::defaultPathOption);
     dirmodel->setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);
+
+    ui->optionsComboBox->addItems({"New Folder", "Rename Folder", "Delete Folder"});
 
     ui->treeView->setModel(dirmodel);
     ui->treeView->setRootIndex(dirmodel->index(Options::defaultPathOption));
@@ -114,4 +117,27 @@ void SaveAsDialog::on_doneBtn_clicked() {
     infoMessage("Success", "Successfully saved the file");
     fileCreated = true;
     this->close();
+}
+
+/* execute the selected option */
+void SaveAsDialog::on_doOptionBtn_clicked() {
+    switch(ui->optionsComboBox->currentIndex()) {
+        /* New Folder */
+        case 0:
+            qDebug() << "new folder";
+            break;
+
+        /* Rename Folder */
+        case 1:
+            qDebug() << "rename folder";
+            break;
+
+        /* Delete Folder */
+        case 2:
+            qDebug() << "delete folder";
+            break;
+
+        default:
+            return;
+    }
 }
