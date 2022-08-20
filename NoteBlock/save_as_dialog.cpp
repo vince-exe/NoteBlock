@@ -3,12 +3,23 @@
 
 #include <QKeyEvent>
 #include <QModelIndex>
+#include <QDir>
 
 #include <iostream>
 
 #include "options_dialog_utilities.h"
-
 #include "options.h"
+
+/* forms */
+#include "add_folder_dialog.h"
+
+QString addFolderName;
+
+void makePathCorrect(QString* path) {
+    for(int i = 0; i < int(path->length()); i++) {
+        if(path[i] == '/') { path[i] = '\\'; }
+    }
+}
 
 void SaveAsDialog::keyPressEvent(QKeyEvent *event) {
    if(event->key() == Qt::Key_Return && ui->pathBox->hasFocus())  {
@@ -81,7 +92,13 @@ void SaveAsDialog::on_goBtn_clicked() {
 }
 
 void SaveAsDialog::on_doneBtn_clicked() {
+    if(!ui->fileNameBox->text().length()) {
+        warningMessage("Warning", "File name cannot be empty");
+        return;
+    }
+
     QString fullPath = ui->pathBox->text() + "\\" + ui->fileNameBox->text() + ".txt";
+    fullPath.replace('/', '\\');
     std::string fullPathString = fullPath.toStdString();
 
     FILE* f = fopen(fullPathString.c_str(), "r");
@@ -121,10 +138,26 @@ void SaveAsDialog::on_doneBtn_clicked() {
 
 /* execute the selected option */
 void SaveAsDialog::on_doOptionBtn_clicked() {
+    /* check if the user selected an item */
+    QModelIndexList indexes = ui->treeView->selectionModel()->selectedIndexes();
+    QModelIndex index;
+
+    AddFolderDialog addFolderDialog;
+
+    if (indexes.size() <= 0) {
+        warningMessage("Warning", "Select a directory");
+        return;
+    }
+
+    /* get the single index */
+    index = indexes.at(0);
+
     switch(ui->optionsComboBox->currentIndex()) {
         /* New Folder */
         case 0:
-            qDebug() << "new folder";
+            addFolderDialog.setModal(true);
+            addFolderDialog.show();
+            addFolderDialog.exec();
             break;
 
         /* Rename Folder */

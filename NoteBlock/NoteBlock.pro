@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    add_folder_dialog.cpp \
     color_picker_dialog.cpp \
     main.cpp \
     main_dialog.cpp \
@@ -19,6 +20,7 @@ SOURCES += \
     save_as_dialog.cpp
 
 HEADERS += \
+    add_folder_dialog.h \
     color_picker_dialog.h \
     main_dialog.h \
     options.h \
@@ -28,6 +30,7 @@ HEADERS += \
     save_as_dialog.h
 
 FORMS += \
+    add_folder_dialog.ui \
     color_picker_dialog.ui \
     main_dialog.ui \
     options_dialog.ui \
