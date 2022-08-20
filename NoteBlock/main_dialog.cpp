@@ -36,7 +36,7 @@ MainDialog::MainDialog(QWidget *parent) :
 
     if(!f) {
         errorBox("Error", "The application failed to load the system files");
-        this->close(); return;
+        exit(-1);
     }
 
     Options::readOptions(f);
