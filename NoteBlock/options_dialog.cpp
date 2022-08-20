@@ -40,7 +40,41 @@ OptionsDialog::~OptionsDialog() {
 
 /* reset button */
 void OptionsDialog::on_resetBtn_clicked() {
+    QMessageBox confirmBox;
+    confirmBox.setText(tr("The application will proceed with resetting all the options to the default options, are you sure that you want to continue?"));
+    confirmBox.addButton(tr("Yes"), QMessageBox::YesRole);
+    QAbstractButton* noBtn = confirmBox.addButton(tr("No"), QMessageBox::YesRole);
 
+    /* show the message box */
+    confirmBox.exec();
+    if(confirmBox.clickedButton() == noBtn) { return; }
+
+    /* read from the default file system */
+    FILE* f = fopen(Options::sysDefaultOptionsPath, "r");
+    if(!f) {
+        errorBox("Error", "The application has failed to load the system files");
+        return;
+    }
+    Options::readOptions(f);
+    fclose(f);
+
+    /* store the default informations in the current options system file */
+    f = fopen(Options::sysCurrentOptionsPath, "w");
+    if(!f) {
+        errorBox("Error", "The application has failed to load the system files");
+        return;
+    }
+
+    Options::storeOptions(f);
+    fclose(f);
+
+    /* reset the widgets */
+    ui->defaultPath->setText(Options::defaultPathOption);
+    qDebug() << Options::defaultFontSize;
+    ui->fontBox->setValue(Options::defaultFontSize);
+    ui->fontStyleBox->setEditText(Options::defaultFontStyle);
+    ui->currentTextColorLabel->setStyleSheet("background-color: " + Options::defaultTextColor);
+    ui->currentBackColorLabel->setStyleSheet("background-color: " + Options::defaultBackColor);
 }
 
 /* done button */

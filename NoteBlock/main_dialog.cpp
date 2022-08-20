@@ -46,7 +46,7 @@ MainDialog::MainDialog(QWidget *parent) :
     fclose(f);
 
     QFont newFont = QFont(Options::defaultFontStyle);
-    ui->textBox->setStyleSheet(noteBookStyleSheet + "font-family: " + newFont.family() + "; font-style: normal" + "; font-size: " + QString::number(Options::defaultFontSize) + "pt;");
+    ui->textBox->setStyleSheet(noteBookStyleSheet + "font-family: " + newFont.family() + "; font-style: normal" + "; font-size: " + QString::number(Options::defaultFontSize) + "pt;" + "color: " + Options::defaultTextColor + ";background-color: " + Options::defaultBackColor);
 }
 
 MainDialog::~MainDialog() {
@@ -81,5 +81,5 @@ void MainDialog::on_openSaveBtn_clicked() {
     }
     QFont newFont = QFont(Options::defaultFontStyle);
 
-    ui->textBox->setStyleSheet(noteBookStyleSheet + "font-family: " + newFont.family() + "; font-style: normal" + "; font-size: " + QString::number(Options::defaultFontSize) + "pt;");
+    ui->textBox->setStyleSheet(noteBookStyleSheet + "font-family: " + newFont.family() + "; font-style: normal" + "; font-size: " + QString::number(Options::defaultFontSize) + "pt;" + "color: " + Options::defaultTextColor + ";background-color: " + Options::defaultBackColor);
 }
