@@ -24,8 +24,14 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
     ui->currentTextColorLabel->setStyleSheet("background-color: " + Options::defaultTextColor + ";" + "border: none");
     /* set the default background color */
     ui->currentBackColorLabel->setStyleSheet("background-color: " + Options::defaultBackColor + ";" + "border: none");
-    /* set the font style box */
-    ui->fontStyleBox->setCurrentFont(QFont(Options::defaultFontStyle));
+
+    /* check if the font style combo box, find the font */
+    if(ui->fontStyleBox->findText(Options::defaultFontStyle) == -1) {
+        ui->fontStyleBox->setEditText(Options::defaultFontStyle);
+    }
+    else {
+        ui->fontStyleBox->setCurrentFont(QFont(Options::defaultFontStyle));
+    }
 }
 
 OptionsDialog::~OptionsDialog() {
@@ -39,7 +45,28 @@ void OptionsDialog::on_resetBtn_clicked() {
 
 /* done button */
 void OptionsDialog::on_doneBtn_clicked() {
+    if(!IsPathExist(ui->defaultPath->text().toStdString())) {
+        warningMessage("Warning", "The entered path doesn't exist");
+        ui->defaultPath->setText(Options::defaultPathOption);
+        return;
+    }
 
+    /* update the options */
+    Options::defaultPathOption = ui->defaultPath->text();
+    Options::defaultFontSize = ui->fontBox->value();
+    Options::defaultFontStyle = ui->fontStyleBox->currentText();
+
+    FILE* f = fopen(Options::sysCurrentOptionsPath, "w");
+    if(!f) {
+        errorBox("Error", "The application has failed to load the system files");
+        return;
+    }
+
+    Options::storeOptions(f);
+    fclose(f);
+
+    infoMessage("Success", "Successfully updated the options");
+    this->close(); return;
 }
 
 /* when the users wants to change the text color */

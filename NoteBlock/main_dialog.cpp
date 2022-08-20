@@ -3,6 +3,7 @@
 
 #include <QShortcut>
 #include <QPushButton>
+#include <QStyle>
 
 #include <windows.h>
 #include <lmcons.h>
@@ -13,6 +14,8 @@
 #include "options_menu_dialog.h"
 
 #include "options_dialog_utilities.h"
+
+const QString noteBookStyleSheet = "font: 600 18pt Segoe UI Variable Text Semibold;background-color: rgb(39, 39, 39);color: rgb(218, 218, 218);border: 0px solid rgb(39, 39, 39);padding-top: 16px;padding-left: 20px;padding-right: 20px;padding-bottom: 45px;";
 
 MainDialog::MainDialog(QWidget *parent) :
     QDialog(parent),
@@ -41,6 +44,9 @@ MainDialog::MainDialog(QWidget *parent) :
 
     Options::readOptions(f);
     fclose(f);
+
+    QFont newFont = QFont(Options::defaultFontStyle);
+    ui->textBox->setStyleSheet(noteBookStyleSheet + "font-family: " + newFont.family() + "; font-style: normal" + "; font-size: " + QString::number(Options::defaultFontSize) + "pt;");
 }
 
 MainDialog::~MainDialog() {
@@ -73,5 +79,7 @@ void MainDialog::on_openSaveBtn_clicked() {
         ui->textBox->clear();
         fileCreated = false;
     }
-}
+    QFont newFont = QFont(Options::defaultFontStyle);
 
+    ui->textBox->setStyleSheet(noteBookStyleSheet + "font-family: " + newFont.family() + "; font-style: normal" + "; font-size: " + QString::number(Options::defaultFontSize) + "pt;");
+}
