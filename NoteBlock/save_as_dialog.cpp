@@ -50,8 +50,9 @@ SaveAsDialog::SaveAsDialog(QWidget *parent) :
 
     dirmodel->setRootPath(Options::defaultPathOption);
     dirmodel->setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);
+    dirmodel->setReadOnly(false);
 
-    ui->optionsComboBox->addItems({"New Folder", "Rename Folder", "Delete Folder"});
+    ui->optionsComboBox->addItems({"New Folder", "Delete Folder"});
 
     ui->treeView->setModel(dirmodel);
     ui->treeView->setRootIndex(dirmodel->index(Options::defaultPathOption));
@@ -149,6 +150,9 @@ void SaveAsDialog::on_doOptionBtn_clicked() {
 
     SaveAsUtilities saveUtilitiesDialog;
 
+    QMessageBox confirmBox;
+    QAbstractButton* noBtn;
+
     if (indexes.size() <= 0) {
         warningMessage("Warning", "Select a directory");
         return;
@@ -178,14 +182,18 @@ void SaveAsDialog::on_doOptionBtn_clicked() {
             infoMessage("Info", "New folder created");
             break;
 
-        /* Rename Folder */
-        case 1:
-
-            break;
-
         /* Delete Folder */
-        case 2:
-            qDebug() << "delete folder";
+        case 1:
+            confirmBox.setText(tr("The application will proceed with removing the folder, are you sure that you want to continue?"));
+            confirmBox.addButton(tr("Yes"), QMessageBox::YesRole);
+            noBtn = confirmBox.addButton(tr("No"), QMessageBox::YesRole);
+
+            /* show the message box */
+            confirmBox.exec();
+            if(confirmBox.clickedButton() == noBtn) { return; }
+
+            dirmodel->remove(index);
+            ui->treeView->setModel(dirmodel);
             break;
 
         default:
