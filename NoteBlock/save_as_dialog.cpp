@@ -11,9 +11,12 @@
 #include "options.h"
 
 /* forms */
-#include "add_folder_dialog.h"
+#include "save_as_utilities.h"
 
-QString addFolderName;
+/* initialize all the static variables */
+QString SaveAsDialog::dirName;
+
+bool SaveAsDialog::cancelBtnPressed = false;
 
 void makePathCorrect(QString* path) {
     for(int i = 0; i < int(path->length()); i++) {
@@ -142,7 +145,7 @@ void SaveAsDialog::on_doOptionBtn_clicked() {
     QModelIndexList indexes = ui->treeView->selectionModel()->selectedIndexes();
     QModelIndex index;
 
-    AddFolderDialog addFolderDialog;
+    SaveAsUtilities saveUtilitiesDialog;
 
     if (indexes.size() <= 0) {
         warningMessage("Warning", "Select a directory");
@@ -155,14 +158,26 @@ void SaveAsDialog::on_doOptionBtn_clicked() {
     switch(ui->optionsComboBox->currentIndex()) {
         /* New Folder */
         case 0:
-            addFolderDialog.setModal(true);
-            addFolderDialog.show();
-            addFolderDialog.exec();
+            saveUtilitiesDialog.setModal(true);
+            saveUtilitiesDialog.show();
+            saveUtilitiesDialog.exec();
+
+            if(SaveAsDialog::cancelBtnPressed) { return; }
+
+            if(QDir((ui->pathBox->text() + "\\" + SaveAsDialog::dirName)).exists()) {
+                warningMessage("Warning", "There is already a folder with this name");
+                return;
+            }
+
+            dirmodel->mkdir(index, SaveAsDialog::dirName);
+            ui->treeView->setModel(dirmodel);
+
+            infoMessage("Info", "New folder created");
             break;
 
         /* Rename Folder */
         case 1:
-            qDebug() << "rename folder";
+
             break;
 
         /* Delete Folder */

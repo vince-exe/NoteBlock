@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SaveAsUtilities</class>
+ <widget class="QDialog" name="SaveAsUtilities">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>277</width>
+    <height>151</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog {
+	background-color: rgb(26, 26, 26);
+}
+</string>
+  </property>
+  <widget class="QLineEdit" name="folderNameBox">
+   <property name="geometry">
+    <rect>
+     <x>25</x>
+     <y>20</y>
+     <width>231</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+	font: 600 11pt &quot;Verdana Pro Cond Semibold&quot;;
+	color: rgb(218, 218, 218);
+	border: 5px solid rgb(39, 39, 39);
+	background-color: rgb(59, 59, 59);
+	padding-left: 7px;
+	letter-spacing: 1px;
+}</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="placeholderText">
+    <string>Folder Name</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="doneBtn">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>80</y>
+     <width>91</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+	font: 600 12pt &quot;Verdana Pro Cond Semibold&quot;;
+	color: rgb(218, 218, 218);
+	border: 5px solid rgb(39, 39, 39);
+	background-color: rgb(59, 59, 59);
+	letter-spacing: 1px;
+}
+
+QPushButton::hover {
+	background-color: rgb(84, 84, 84);
+}</string>
+   </property>
+   <property name="text">
+    <string>Done</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="cancelBtn">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>80</y>
+     <width>91</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+	font: 600 12pt &quot;Verdana Pro Cond Semibold&quot;;
+	color: rgb(218, 218, 218);
+	border: 5px solid rgb(39, 39, 39);
+	background-color: rgb(59, 59, 59);
+	letter-spacing: 1px;
+}
+
+QPushButton::hover {
+	background-color: rgb(84, 84, 84);
+}</string>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

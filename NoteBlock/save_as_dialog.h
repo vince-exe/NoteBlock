@@ -13,6 +13,13 @@ class SaveAsDialog : public QDialog
     Q_OBJECT
 
 public:
+    static QString dirName;
+
+    static const int maxDirName = 30;
+
+    static bool cancelBtnPressed;
+
+public:
     explicit SaveAsDialog(QWidget *parent = nullptr);
     ~SaveAsDialog();
 
