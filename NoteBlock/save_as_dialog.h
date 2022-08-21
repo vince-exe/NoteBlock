@@ -19,6 +19,8 @@ public:
 
     static bool cancelBtnPressed;
 
+    static QString selOption;
+
 public:
     explicit SaveAsDialog(QWidget *parent = nullptr);
     ~SaveAsDialog();

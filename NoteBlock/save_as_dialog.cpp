@@ -18,6 +18,8 @@ QString SaveAsDialog::dirName;
 
 bool SaveAsDialog::cancelBtnPressed = false;
 
+QString SaveAsDialog::selOption;
+
 void makePathCorrect(QString* path) {
     for(int i = 0; i < int(path->length()); i++) {
         if(path[i] == '/') { path[i] = '\\'; }
@@ -158,6 +160,7 @@ void SaveAsDialog::on_doOptionBtn_clicked() {
     switch(ui->optionsComboBox->currentIndex()) {
         /* New Folder */
         case 0:
+            SaveAsDialog::selOption = "Add";
             saveUtilitiesDialog.setModal(true);
             saveUtilitiesDialog.show();
             saveUtilitiesDialog.exec();

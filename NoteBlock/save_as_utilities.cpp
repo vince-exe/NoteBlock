@@ -12,6 +12,13 @@ SaveAsUtilities::SaveAsUtilities(QWidget *parent) :
 
     this->setWindowFlags(Qt::Window | Qt::MSWindowsFixedSizeDialogHint);
 
+    if(SaveAsDialog::selOption == "add") {
+        this->setWindowTitle("Add Folder");
+    }
+    else {
+        this->setWindowTitle("Rename Folder");
+    }
+
     SaveAsDialog::cancelBtnPressed = true;
 }
 
