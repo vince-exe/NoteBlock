@@ -14,6 +14,7 @@
 #include "options_menu_dialog.h"
 
 #include "options_dialog_utilities.h"
+#include "open_file_dialog.h"
 
 const QString noteBookStyleSheet = "font: 600 18pt Segoe UI Variable Text Semibold;background-color: rgb(39, 39, 39);color: rgb(218, 218, 218);border: 0px solid rgb(39, 39, 39);padding-top: 16px;padding-left: 20px;padding-right: 20px;padding-bottom: 45px;";
 
@@ -82,4 +83,13 @@ void MainDialog::on_openSaveBtn_clicked() {
     QFont newFont = QFont(Options::defaultFontStyle);
 
     ui->textBox->setStyleSheet(noteBookStyleSheet + "font-family: " + newFont.family() + "; font-style: normal" + "; font-size: " + QString::number(Options::defaultFontSize) + "pt;" + "color: " + Options::defaultTextColor + ";background-color: " + Options::defaultBackColor);
+
+    if(OpenFileDialog::fileOpened) {
+        ui->textBox->setPlainText(QString::fromStdString(messageBuffer));
+        OpenFileDialog::fileOpened = false;
+
+        QTextCursor cursor = ui->textBox->textCursor();
+        cursor.atEnd();
+        ui->textBox->setTextCursor(cursor);
+    }
 }

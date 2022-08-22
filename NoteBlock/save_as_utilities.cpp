@@ -15,9 +15,6 @@ SaveAsUtilities::SaveAsUtilities(QWidget *parent) :
     if(SaveAsDialog::selOption == "Add") {
         this->setWindowTitle("Add Folder");
     }
-    else {
-        this->setWindowTitle("Rename Folder");
-    }
 
     SaveAsDialog::cancelBtnPressed = true;
 }

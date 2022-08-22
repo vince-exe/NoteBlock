@@ -1,9 +1,12 @@
 #include "options_menu_dialog.h"
 #include "ui_options_menu_dialog.h"
 
+#include "open_file_dialog.h"
+
 /* forms */
 #include "save_as_dialog.h"
 #include "options_dialog.h"
+#include "open_file_dialog.h"
 
 OptionsMenuDialog::OptionsMenuDialog(QWidget *parent) :
     QDialog(parent),
@@ -34,7 +37,15 @@ void OptionsMenuDialog::on_saveBtn_clicked() {
 
 /* Open button */
 void OptionsMenuDialog::on_openBtn_clicked() {
+    OpenFileDialog openFileDialog;
+    openFileDialog.setModal(true);
+    openFileDialog.show();
+    openFileDialog.exec();
 
+    /* if the application has successfully opened the file */
+    if(OpenFileDialog::fileOpened) {
+        this->close(); return;
+    }
 }
 
 /* New button */

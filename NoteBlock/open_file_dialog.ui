@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>OpenFileDialog</class>
+ <widget class="QDialog" name="OpenFileDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>588</width>
+    <height>587</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog {
+	background-color: rgb(26, 26, 26);
+}
+</string>
+  </property>
+  <widget class="QPushButton" name="browseBtn">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>75</y>
+     <width>83</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+	font: 600 12pt &quot;Verdana Pro Cond Semibold&quot;;
+	color: rgb(218, 218, 218);
+	border: 5px solid rgb(39, 39, 39);
+	background-color: rgb(59, 59, 59);
+}
+
+QPushButton::hover {
+	background-color: rgb(84, 84, 84);
+}</string>
+   </property>
+   <property name="text">
+    <string>Browse</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="resetPathBtn">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>20</y>
+     <width>83</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+	font: 600 12pt &quot;Verdana Pro Cond Semibold&quot;;
+	color: rgb(218, 218, 218);
+	border: 5px solid rgb(39, 39, 39);
+	background-color: rgb(59, 59, 59);
+}
+
+QPushButton::hover {
+	background-color: rgb(84, 84, 84);
+}</string>
+   </property>
+   <property name="text">
+    <string>Reset</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="pathBox">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>20</y>
+     <width>401</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+	font: 600 11pt &quot;Verdana Pro Cond Semibold&quot;;
+	color: rgb(218, 218, 218);
+	border: 5px solid rgb(39, 39, 39);
+	background-color: rgb(59, 59, 59);
+	padding-left: 7px;
+	letter-spacing: 1px;
+}</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="doOptionBtn">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>221</y>
+     <width>121</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+	font: 600 12pt &quot;Verdana Pro Cond Semibold&quot;;
+	color: rgb(218, 218, 218);
+	border: 5px solid rgb(39, 39, 39);
+	background-color: rgb(59, 59, 59);
+	letter-spacing: 1px;
+}
+
+QPushButton::hover {
+	background-color: rgb(84, 84, 84);
+}</string>
+   </property>
+   <property name="text">
+    <string>Do Option</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="optionsComboBox">
+   <property name="geometry">
+    <rect>
+     <x>446</x>
+     <y>161</y>
+     <width>131</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QComboBox {
+	font: 600 9pt &quot;Verdana Pro Cond Semibold&quot;;
+	color: rgb(218, 218, 218);
+	border: 5px solid rgb(39, 39, 39);
+	background-color: rgb(59, 59, 59);
+	padding-left: 8px;
+	letter-spacing: 1px;
+}</string>
+   </property>
+   <property name="editable">
+    <bool>false</bool>
+   </property>
+   <property name="currentText">
+    <string/>
+   </property>
+   <property name="placeholderText">
+    <string>Options</string>
+   </property>
+  </widget>
+  <widget class="QTreeView" name="treeView">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>110</y>
+     <width>401</width>
+     <height>441</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QTreeView {
+	background-color: rgb(152, 152, 152);
+	border: 7px solid rgb(39, 39, 39);
+}</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="openBtn">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>510</y>
+     <width>121</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+	font: 600 12pt &quot;Verdana Pro Cond Semibold&quot;;
+	color: rgb(218, 218, 218);
+	border: 5px solid rgb(39, 39, 39);
+	background-color: rgb(59, 59, 59);
+	letter-spacing: 1px;
+}
+
+QPushButton::hover {
+	background-color: rgb(84, 84, 84);
+}</string>
+   </property>
+   <property name="text">
+    <string>Open</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,5 +1,7 @@
 #include "options_dialog_utilities.h"
 
+#include <QFileInfo>
+
 /* used to store the content in the message box */
 std::string messageBuffer;
 
@@ -38,4 +40,19 @@ void errorBox(const std::string &title, const std::string &errorMessage) {
 
     errorBox.information(0, QString::fromStdString(title), QString::fromStdString(errorMessage));
     errorBox.setFixedSize(550, 300);
+}
+
+bool isFileExist(const QString &s) {
+    QFileInfo checkFile(s);
+
+    return checkFile.exists() && checkFile.isFile();
+}
+
+void readOpenInformations(FILE *f, std::string &s_buffer) {
+    char buffer[1024];
+    s_buffer.clear();
+
+    while(fgets(buffer, 1024, f)) {
+        s_buffer.append(buffer);
+    }
 }
