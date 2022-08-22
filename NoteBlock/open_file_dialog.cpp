@@ -2,12 +2,16 @@
 #include "ui_open_file_dialog.h"
 
 #include "options.h"
-#include "options_dialog_utilities.h"
+#include "utilities.h"
 
 #include "save_as_utilities.h"
 #include "save_as_dialog.h"
 
+#include "main_dialog.h"
+
 bool OpenFileDialog::fileOpened = false;
+
+QString OpenFileDialog::filePath;
 
 OpenFileDialog::OpenFileDialog(QWidget *parent) :
     QDialog(parent),
@@ -138,7 +142,8 @@ void OpenFileDialog::on_openBtn_clicked() {
     }
 
     /* read the informations from the file and store it in the buffer */
-    readOpenInformations(f, messageBuffer);
+    readOpenInformations(f, MainDialog::messageBuffer);
+    OpenFileDialog::filePath = filePath;
     OpenFileDialog::fileOpened = true;
 
     this->close(); return;

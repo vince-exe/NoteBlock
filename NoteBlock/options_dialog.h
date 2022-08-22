@@ -12,6 +12,13 @@ class OptionsDialog : public QDialog
     Q_OBJECT
 
 public:
+    /* used to check if the users wants to change the text color or background color */
+    static bool changeTextColor;
+
+    /* used to check if the user has successfully created the file */
+    static bool fileCreated;
+
+public:
     explicit OptionsDialog(QWidget *parent = nullptr);
     ~OptionsDialog();
 

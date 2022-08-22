@@ -7,8 +7,11 @@
 
 #include <iostream>
 
-#include "options_dialog_utilities.h"
+#include "utilities.h"
+#include "options_dialog.h"
 #include "options.h"
+
+#include "main_dialog.h"
 
 /* forms */
 #include "save_as_utilities.h"
@@ -113,7 +116,7 @@ void SaveAsDialog::on_doneBtn_clicked() {
         warningMessage("Warning", "There is already a file named " + ui->fileNameBox->text().toStdString());
         ui->fileNameBox->clear();
 
-        fileCreated = false;
+        OptionsDialog::fileCreated = false;
         return;
     }
     fclose(f);
@@ -125,12 +128,12 @@ void SaveAsDialog::on_doneBtn_clicked() {
         ui->pathBox->setText(Options::defaultPathOption);
         ui->treeView->setRootIndex(dirmodel->index(Options::defaultPathOption));
 
-        fileCreated = false;
+        OptionsDialog::fileCreated = false;
         return;
     }
 
     /* store the content in the file */
-    storeInformations(f, messageBuffer);
+    storeInformations(f, MainDialog::messageBuffer);
     fclose(f);
 
     ui->pathBox->setText(Options::defaultPathOption);
@@ -138,7 +141,7 @@ void SaveAsDialog::on_doneBtn_clicked() {
     ui->fileNameBox->clear();
 
     infoMessage("Success", "Successfully saved the file");
-    fileCreated = true;
+    OptionsDialog::fileCreated = true;
     this->close();
 }
 

@@ -1,12 +1,16 @@
 #include "options_menu_dialog.h"
 #include "ui_options_menu_dialog.h"
 
+#include "utilities.h"
+
 #include "open_file_dialog.h"
 
 /* forms */
 #include "save_as_dialog.h"
 #include "options_dialog.h"
 #include "open_file_dialog.h"
+
+#include "main_dialog.h"
 
 OptionsMenuDialog::OptionsMenuDialog(QWidget *parent) :
     QDialog(parent),
@@ -32,7 +36,24 @@ void OptionsMenuDialog::on_saveAsBtn_clicked() {
 
 /* Save */
 void OptionsMenuDialog::on_saveBtn_clicked() {
+    if(OpenFileDialog::fileOpened) {
+        FILE* f = fopen(OpenFileDialog::filePath.toStdString().c_str(), "w");
+        if(!f) {
+            errorBox("Error", "The application has failed to save the file");
+            return;
+        }
 
+        /* store the informations in the opened file */
+        storeInformations(f, MainDialog::messageBuffer);
+        fclose(f);
+
+        infoMessage("Success", "Successfully saved the file");
+        return;
+    }
+    else {
+        warningMessage("Warning", "This is a new file, so you have to select the 'save as' option to save it");
+        return;
+    }
 }
 
 /* Open button */

@@ -3,12 +3,16 @@
 
 #include <iostream>
 
-#include "options_dialog_utilities.h"
+#include "utilities.h"
 
 #include "options.h"
 
 /* forms */
 #include "color_picker_dialog.h"
+
+bool OptionsDialog::changeTextColor;
+
+bool OptionsDialog::fileCreated;
 
 OptionsDialog::OptionsDialog(QWidget *parent) :
     QDialog(parent),

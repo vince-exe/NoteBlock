@@ -15,10 +15,10 @@ SOURCES += \
     open_file_dialog.cpp \
     options.cpp \
     options_dialog.cpp \
-    options_dialog_utilities.cpp \
     options_menu_dialog.cpp \
     save_as_dialog.cpp \
-    save_as_utilities.cpp
+    save_as_utilities.cpp \
+    utilities.cpp
 
 HEADERS += \
     color_picker_dialog.h \
@@ -26,10 +26,10 @@ HEADERS += \
     open_file_dialog.h \
     options.h \
     options_dialog.h \
-    options_dialog_utilities.h \
     options_menu_dialog.h \
     save_as_dialog.h \
-    save_as_utilities.h
+    save_as_utilities.h \
+    utilities.h
 
 FORMS += \
     color_picker_dialog.ui \

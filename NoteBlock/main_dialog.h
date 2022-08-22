@@ -12,6 +12,10 @@ class MainDialog : public QDialog
     Q_OBJECT
 
 public:
+    /* used to store the content in the message box */
+    static std::string messageBuffer;
+
+public:
     explicit MainDialog(QWidget *parent = nullptr);
     ~MainDialog();
 

@@ -1,13 +1,6 @@
-#include "options_dialog_utilities.h"
+#include "utilities.h"
 
 #include <QFileInfo>
-
-/* used to store the content in the message box */
-std::string messageBuffer;
-
-bool fileCreated = false;
-
-bool changeTextColor = false;
 
 bool IsPathExist(const std::string &s) {
   struct stat buffer;

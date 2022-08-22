@@ -15,6 +15,8 @@ class OpenFileDialog : public QDialog
 public:
     static bool fileOpened;
 
+    static QString filePath;
+
 public:
     explicit OpenFileDialog(QWidget *parent = nullptr);
     ~OpenFileDialog();

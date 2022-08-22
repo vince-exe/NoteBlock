@@ -13,10 +13,13 @@
 /* forms */
 #include "options_menu_dialog.h"
 
-#include "options_dialog_utilities.h"
+#include "options_dialog.h"
+#include "utilities.h"
 #include "open_file_dialog.h"
 
 const QString noteBookStyleSheet = "font: 600 18pt Segoe UI Variable Text Semibold;background-color: rgb(39, 39, 39);color: rgb(218, 218, 218);border: 0px solid rgb(39, 39, 39);padding-top: 16px;padding-left: 20px;padding-right: 20px;padding-bottom: 45px;";
+
+std::string MainDialog::messageBuffer = "";
 
 MainDialog::MainDialog(QWidget *parent) :
     QDialog(parent),
@@ -76,9 +79,9 @@ void MainDialog::on_openSaveBtn_clicked() {
     optionDialog.show();
     optionDialog.exec();
 
-    if(fileCreated) {
+    if(OptionsDialog::fileCreated) {
         ui->textBox->clear();
-        fileCreated = false;
+        OptionsDialog::fileCreated = false;
     }
     QFont newFont = QFont(Options::defaultFontStyle);
 

@@ -1,8 +1,8 @@
 #include "color_picker_dialog.h"
 #include "ui_color_picker_dialog.h"
 
-#include "options_dialog_utilities.h"
-
+#include "utilities.h"
+#include "options_dialog.h"
 #include "options.h"
 
 QString getRGB(int r, int g, int b) {
@@ -24,7 +24,7 @@ ColorPickerDialog::ColorPickerDialog(QWidget *parent) :
     ui->greenSpinBox->setAlignment(Qt::AlignCenter);
     ui->blueSpinBox->setAlignment(Qt::AlignCenter);
 
-    if(changeTextColor) {
+    if(OptionsDialog::changeTextColor) {
         ui->redSpinBox->setValue(Options::defTextColorG);
         ui->reedSlider->setValue(Options::defTextColorR);
 
@@ -54,7 +54,7 @@ ColorPickerDialog::~ColorPickerDialog() {
 void ColorPickerDialog::on_reedSlider_valueChanged(int value) {
     ui->redSpinBox->setValue(value);
 
-    if(changeTextColor) {
+    if(OptionsDialog::changeTextColor) {
         ui->resultLabel->setStyleSheet("color: " + getRGB(value, ui->greenSpinBox->value(), ui->blueSpinBox->value()) + + ";" + "background-color: " + Options::defaultBackColor + ";font: 600 16pt Segoe UI Semibold");
     }
     else {
@@ -65,7 +65,7 @@ void ColorPickerDialog::on_reedSlider_valueChanged(int value) {
 void ColorPickerDialog::on_greenSlider_valueChanged(int value) {
     ui->greenSpinBox->setValue(value);
 
-    if(changeTextColor) {
+    if(OptionsDialog::changeTextColor) {
         ui->resultLabel->setStyleSheet("color: " + getRGB(ui->redSpinBox->value(), value, ui->blueSpinBox->value()) + ";" + "background-color: " + Options::defaultBackColor + ";font: 600 16pt Segoe UI Semibold");
     }
     else {
@@ -76,7 +76,7 @@ void ColorPickerDialog::on_greenSlider_valueChanged(int value) {
 void ColorPickerDialog::on_blueSlider_valueChanged(int value) {
     ui->blueSpinBox->setValue(value);
 
-    if(changeTextColor) {
+    if(OptionsDialog::changeTextColor) {
         ui->resultLabel->setStyleSheet("color: " + getRGB(ui->redSpinBox->value(), ui->greenSpinBox->value(), value) + ";" + "background-color: " + Options::defaultBackColor + ";font: 600 16pt Segoe UI Semibold");
     }
     else {
@@ -89,7 +89,7 @@ void ColorPickerDialog::on_blueSlider_valueChanged(int value) {
 void ColorPickerDialog::on_redSpinBox_valueChanged(int arg1) {
     ui->reedSlider->setValue(arg1);
 
-    if(changeTextColor) {
+    if(OptionsDialog::changeTextColor) {
         ui->resultLabel->setStyleSheet("color: " + getRGB(arg1, ui->greenSpinBox->value(), ui->blueSpinBox->value()) + ";" + "background-color: " + Options::defaultBackColor + ";font: 600 16pt Segoe UI Semibold");
     }
     else {
@@ -100,7 +100,7 @@ void ColorPickerDialog::on_redSpinBox_valueChanged(int arg1) {
 void ColorPickerDialog::on_greenSpinBox_valueChanged(int arg1) {
     ui->greenSlider->setValue(arg1);
 
-    if(changeTextColor) {
+    if(OptionsDialog::changeTextColor) {
         ui->resultLabel->setStyleSheet("color: " + getRGB(ui->redSpinBox->value(), arg1, ui->blueSpinBox->value()) + ";" + "background-color: " + Options::defaultBackColor + ";font: 600 16pt Segoe UI Semibold");
     }
     else {
@@ -111,7 +111,7 @@ void ColorPickerDialog::on_greenSpinBox_valueChanged(int arg1) {
 void ColorPickerDialog::on_blueSpinBox_valueChanged(int arg1) {
     ui->blueSlider->setValue(arg1);
 
-    if(changeTextColor) {
+    if(OptionsDialog::changeTextColor) {
         ui->resultLabel->setStyleSheet("color: " + getRGB(ui->redSpinBox->value(), ui->greenSpinBox->value(), arg1) + ";" + "background-color: " + Options::defaultBackColor + ";font: 600 16pt Segoe UI Semibold");
     }
     else {
@@ -164,7 +164,7 @@ void ColorPickerDialog::on_doneBn_clicked() {
         return;
     }
 
-    if(changeTextColor) {
+    if(OptionsDialog::changeTextColor) {
         Options::defaultTextColor = "rgb(" + QString::number(ui->redSpinBox->value()) + ",";
         Options::defaultTextColor.append(QString::number(ui->greenSpinBox->value()) + ",");
         Options::defaultTextColor.append(QString::number(ui->blueSpinBox->value()) + ")");
