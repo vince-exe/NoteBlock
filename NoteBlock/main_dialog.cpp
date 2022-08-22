@@ -86,7 +86,6 @@ void MainDialog::on_openSaveBtn_clicked() {
 
     if(OpenFileDialog::fileOpened) {
         ui->textBox->setPlainText(QString::fromStdString(messageBuffer));
-        OpenFileDialog::fileOpened = false;
 
         QTextCursor cursor = ui->textBox->textCursor();
         cursor.atEnd();
