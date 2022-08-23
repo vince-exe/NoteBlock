@@ -95,3 +95,15 @@ void OptionsMenuDialog::on_optionsBtn_clicked() {
     optionsDialog.exec();
 }
 
+/* crypt a file */
+void OptionsMenuDialog::on_cryptBtn_clicked() {
+    if(!OpenFileDialog::fileOpened) {
+        warningMessage("Warning", "You have to open a file to crypt it");
+        return;
+    }
+}
+
+/* decrypt a file */
+void OptionsMenuDialog::on_decryptBtn_clicked() {
+
+}

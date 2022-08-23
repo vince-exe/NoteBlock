@@ -26,6 +26,10 @@ private slots:
 
     void on_optionsBtn_clicked();
 
+    void on_cryptBtn_clicked();
+
+    void on_decryptBtn_clicked();
+
 private:
     Ui::OptionsMenuDialog *ui;
 };

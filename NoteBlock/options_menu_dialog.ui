@@ -163,6 +163,56 @@ QPushButton::hover {
     <string>Options</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="cryptBtn">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>230</y>
+     <width>121</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+	font: 600 13pt &quot;Verdana Pro Cond Semibold&quot;;
+	color: rgb(218, 218, 218);
+	border: 4px solid rgb(39, 39, 39);
+	border-radius: 8px;
+}
+
+QPushButton::hover {
+	background-color: rgb(52, 52, 52);
+}</string>
+   </property>
+   <property name="text">
+    <string>Crypt</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="decryptBtn">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>230</y>
+     <width>121</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+	font: 600 13pt &quot;Verdana Pro Cond Semibold&quot;;
+	color: rgb(218, 218, 218);
+	border: 4px solid rgb(39, 39, 39);
+	border-radius: 8px;
+}
+
+QPushButton::hover {
+	background-color: rgb(52, 52, 52);
+}</string>
+   </property>
+   <property name="text">
+    <string>Decrypt</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
