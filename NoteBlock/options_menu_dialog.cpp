@@ -2,15 +2,14 @@
 #include "ui_options_menu_dialog.h"
 
 #include "utilities.h"
-
-#include "open_file_dialog.h"
+#include "main_dialog.h"
+#include "options.h"
 
 /* forms */
 #include "save_as_dialog.h"
 #include "options_dialog.h"
 #include "open_file_dialog.h"
-
-#include "main_dialog.h"
+#include "open_file_dialog.h"
 
 OptionsMenuDialog::OptionsMenuDialog(QWidget *parent) :
     QDialog(parent),
@@ -71,7 +70,21 @@ void OptionsMenuDialog::on_openBtn_clicked() {
 
 /* New button */
 void OptionsMenuDialog::on_newBtn_clicked() {
+    QMessageBox confirmBox;
 
+    confirmBox.setText(tr("If you have applied new changes, the application will ignore them and create a new file, are you sure?"));
+    confirmBox.addButton(tr("Yes"), QMessageBox::YesRole);
+
+    QAbstractButton* noBtn = confirmBox.addButton(tr("No"), QMessageBox::YesRole);
+    confirmBox.exec();
+
+    if(confirmBox.clickedButton() == noBtn) { return; }
+
+    /* reset all the informations */
+    MainDialog::messageBuffer = "";
+    Options::wantsNewFile = true;
+
+    this->close(); return;
 }
 
 /* options button */

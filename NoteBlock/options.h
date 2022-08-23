@@ -28,6 +28,8 @@ public:
 
     static int defaultFontSize;
 
+    static bool wantsNewFile;
+
 public:
     Options();
 

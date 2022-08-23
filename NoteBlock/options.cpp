@@ -23,6 +23,8 @@ int Options::defBackColorB;
 
 int Options::defaultFontSize;
 
+bool Options::wantsNewFile;
+
 Options::Options() {}
 
 void Options::readOptions(FILE *f) {

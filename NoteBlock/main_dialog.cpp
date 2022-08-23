@@ -87,6 +87,12 @@ void MainDialog::on_openSaveBtn_clicked() {
 
     ui->textBox->setStyleSheet(noteBookStyleSheet + "font-family: " + newFont.family() + "; font-style: normal" + "; font-size: " + QString::number(Options::defaultFontSize) + "pt;" + "color: " + Options::defaultTextColor + ";background-color: " + Options::defaultBackColor);
 
+    if(Options::wantsNewFile) {
+        Options::wantsNewFile = false;
+        ui->textBox->setPlainText(QString::fromStdString(messageBuffer));
+        return;
+    }
+
     if(OpenFileDialog::fileOpened) {
         ui->textBox->setPlainText(QString::fromStdString(messageBuffer));
 
