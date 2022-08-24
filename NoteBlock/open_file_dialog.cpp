@@ -23,6 +23,8 @@ OpenFileDialog::OpenFileDialog(QWidget *parent) :
 
     dirFilemodel->setRootPath(Options::defaultPathOption);
     dirFilemodel->setReadOnly(false);
+    dirFilemodel->setNameFilters({"*.txt"});
+    dirFilemodel->setNameFilterDisables(false);
 
     ui->optionsComboBox->addItems({"New Folder", "Delete"});
 
@@ -130,7 +132,7 @@ void OpenFileDialog::on_openBtn_clicked() {
     const QString &filePath = ui->pathBox->text();
 
     /* check if the file exist and if is effectively a file */
-    if(!isFileExist(ui->pathBox->text())) {
+    if(!isFileExist(filePath)) {
         warningMessage("Warning", "Select a valid file");
         return;
     }

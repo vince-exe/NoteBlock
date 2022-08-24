@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     color_picker_dialog.cpp \
+    crypt_system.cpp \
     main.cpp \
     main_dialog.cpp \
     open_file_dialog.cpp \
@@ -22,6 +23,7 @@ SOURCES += \
 
 HEADERS += \
     color_picker_dialog.h \
+    crypt_system.h \
     main_dialog.h \
     open_file_dialog.h \
     options.h \

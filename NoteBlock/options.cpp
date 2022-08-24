@@ -69,9 +69,9 @@ void Options::storeOptions(FILE *f) {
     char buffer[1024];
 
     sprintf(buffer, "%s;%s;%s;%d;%d;%d;%d;%d;%d;%d\n", Options::defaultFontStyle.toStdString().c_str(), Options::defaultTextColor.toStdString().c_str(),
-                                                     Options::defaultBackColor.toStdString().c_str(), Options::defTextColorR, Options::defTextColorG,
-                                                     Options::defTextColorB, Options::defBackColorR, Options::defBackColorG, Options::defBackColorB,
-                                                     Options::defaultFontSize
+                                                       Options::defaultBackColor.toStdString().c_str(), Options::defTextColorR, Options::defTextColorG,
+                                                       Options::defTextColorB, Options::defBackColorR, Options::defBackColorG, Options::defBackColorB,
+                                                       Options::defaultFontSize
             );
     fprintf(f, buffer);
 }

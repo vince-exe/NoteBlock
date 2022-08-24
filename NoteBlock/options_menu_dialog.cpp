@@ -4,6 +4,7 @@
 #include "utilities.h"
 #include "main_dialog.h"
 #include "options.h"
+#include "crypt_system.h"
 
 /* forms */
 #include "save_as_dialog.h"
@@ -82,6 +83,8 @@ void OptionsMenuDialog::on_newBtn_clicked() {
 
     /* reset all the informations */
     MainDialog::messageBuffer = "";
+    OpenFileDialog::fileOpened = false;
+
     Options::wantsNewFile = true;
 
     this->close(); return;
@@ -101,6 +104,54 @@ void OptionsMenuDialog::on_cryptBtn_clicked() {
         warningMessage("Warning", "You have to open a file to crypt it");
         return;
     }
+
+    QMessageBox confirmBox;
+
+    confirmBox.setText(tr("This option has been build for fun by the developer of the application, it doesn't guarantee a secure criptation of the file, dont' use it to crypt sensible informations"));
+    confirmBox.addButton(tr("Ok"), QMessageBox::YesRole);
+
+    QAbstractButton* noBtn = confirmBox.addButton(tr("No"), QMessageBox::YesRole);
+    confirmBox.exec();
+
+    if(confirmBox.clickedButton() == noBtn) { return; }
+
+    /* generate the key and crypt the message */
+    CryptSystem::generateKey();
+    MainDialog::messageBuffer = CryptSystem::crypt(MainDialog::messageBuffer, CryptSystem::getKey());
+    MainDialog::messageBuffer.append("\n");
+
+    FILE* f = fopen(OpenFileDialog::filePath.toStdString().c_str(), "w");
+    if(!f) {
+        errorBox("Error", "The application has failed to crypt the file");
+        return;
+    }
+
+    storeInformations(f, MainDialog::messageBuffer);
+    fclose(f);
+
+    /* get the name of the cripted file without .txt */
+    std::string criptedFileName = getFileName(OpenFileDialog::filePath.toStdString());
+    criptedFileName = criptedFileName.erase(criptedFileName.find('.'), criptedFileName.length());
+
+    /* get the name of the directory without the file name */
+    std::string dirPath = getDirName(OpenFileDialog::filePath.toStdString());
+
+    /* construct the path of the decryption key */
+    std::string decKeyPath = dirPath + "/" + "pri_key_for_" + criptedFileName + ".txt";
+
+    /* store the key in the same path of the cripted file */
+    f = fopen(decKeyPath.c_str(), "w");
+    if(!f) {
+        errorBox("Error", "The application has failed to crypt the file");
+        return;
+    }
+    fprintf(f, "%d\n", CryptSystem::getKey());
+    fclose(f);
+
+    infoMessage("Success", "The application has successfully cripted the file, it has been generated a file that contain the key to decrypt the file in the same directory, keep it private");
+    CryptSystem::criptedStatus = true;
+
+    return;
 }
 
 /* decrypt a file */

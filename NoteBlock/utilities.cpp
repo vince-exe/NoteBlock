@@ -31,7 +31,7 @@ void infoMessage(const std::string &title, const std::string &infoMessage) {
 void errorBox(const std::string &title, const std::string &errorMessage) {
     QMessageBox errorBox;
 
-    errorBox.information(0, QString::fromStdString(title), QString::fromStdString(errorMessage));
+    errorBox.critical(0, QString::fromStdString(title), QString::fromStdString(errorMessage));
     errorBox.setFixedSize(550, 300);
 }
 
@@ -48,4 +48,18 @@ void readOpenInformations(FILE *f, std::string &s_buffer) {
     while(fgets(buffer, 1024, f)) {
         s_buffer.append(buffer);
     }
+}
+
+std::string getDirName(std::string fullPath) {
+    int i = fullPath.length() - 1;
+    while(fullPath[i--] != '/');
+
+    return fullPath.substr(0, i + 1);
+}
+
+std::string getFileName(std::string fullPath) {
+    int i = fullPath.length() - 1;
+    while(fullPath[i--] != '/');
+
+    return fullPath.substr(i + 2, fullPath.length() - 1);
 }

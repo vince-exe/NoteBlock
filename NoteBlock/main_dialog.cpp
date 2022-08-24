@@ -9,6 +9,7 @@
 #include <lmcons.h>
 
 #include "options.h"
+#include "crypt_system.h"
 
 /* forms */
 #include "options_menu_dialog.h"
@@ -79,13 +80,18 @@ void MainDialog::on_openSaveBtn_clicked() {
     optionDialog.show();
     optionDialog.exec();
 
+    QFont newFont = QFont(Options::defaultFontStyle);
+    ui->textBox->setStyleSheet(noteBookStyleSheet + "font-family: " + newFont.family() + "; font-style: normal" + "; font-size: " + QString::number(Options::defaultFontSize) + "pt;" + "color: " + Options::defaultTextColor + ";background-color: " + Options::defaultBackColor);
+
     if(OptionsDialog::fileCreated) {
         ui->textBox->clear();
         OptionsDialog::fileCreated = false;
     }
-    QFont newFont = QFont(Options::defaultFontStyle);
 
-    ui->textBox->setStyleSheet(noteBookStyleSheet + "font-family: " + newFont.family() + "; font-style: normal" + "; font-size: " + QString::number(Options::defaultFontSize) + "pt;" + "color: " + Options::defaultTextColor + ";background-color: " + Options::defaultBackColor);
+    if(CryptSystem::criptedStatus) {
+        CryptSystem::criptedStatus = false;
+        return;
+    }
 
     if(Options::wantsNewFile) {
         Options::wantsNewFile = false;
