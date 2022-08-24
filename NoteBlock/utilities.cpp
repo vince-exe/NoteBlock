@@ -1,6 +1,7 @@
 #include "utilities.h"
 
 #include <QFileInfo>
+#include <QDir>
 
 bool IsPathExist(const std::string &s) {
   struct stat buffer;

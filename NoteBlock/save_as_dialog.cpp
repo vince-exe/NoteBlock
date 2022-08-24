@@ -52,10 +52,11 @@ SaveAsDialog::SaveAsDialog(QWidget *parent) :
     this->setWindowFlags(Qt::Window | Qt::MSWindowsFixedSizeDialogHint);
 
     dirmodel->setRootPath(Options::defaultPathOption);
-    dirmodel->setFilter(QDir::AllDirs | QDir::NoDotAndDotDot);
     dirmodel->setReadOnly(false);
+    dirmodel->setNameFilters({"*.txt"});
+    dirmodel->setNameFilterDisables(false);
 
-    ui->optionsComboBox->addItems({"New Folder", "Delete Folder"});
+    ui->optionsComboBox->addItems({"New Folder", "Delete"});
 
     ui->treeView->setModel(dirmodel);
     ui->treeView->setRootIndex(dirmodel->index(Options::defaultPathOption));
@@ -106,11 +107,14 @@ void SaveAsDialog::on_doneBtn_clicked() {
         return;
     }
 
-    QString fullPath = ui->pathBox->text() + "\\" + ui->fileNameBox->text() + ".txt";
-    fullPath.replace('/', '\\');
-    std::string fullPathString = fullPath.toStdString();
+    QString fileName = ui->fileNameBox->text();
+    if(fileName.contains(".txt")) { fileName = fileName.remove(".txt"); }
 
-    FILE* f = fopen(fullPathString.c_str(), "r");
+    QString f_ = ui->pathBox->text() + "/" + fileName + ".txt";
+    std::string fullPath = f_.toStdString();
+
+    FILE* f = fopen(fullPath.c_str(), "r");
+
     /* check if the file already exist */
     if(f) {
         warningMessage("Warning", "There is already a file named " + ui->fileNameBox->text().toStdString());
@@ -121,7 +125,7 @@ void SaveAsDialog::on_doneBtn_clicked() {
     }
     fclose(f);
 
-    f = fopen(fullPathString.c_str(), "w");
+    f = fopen(fullPath.c_str(), "w");
     if(!f) {
         warningMessage("Warning", "The application can't create the file in the given path");
         ui->fileNameBox->clear();
