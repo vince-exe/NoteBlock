@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>259</width>
-    <height>190</height>
+    <width>611</width>
+    <height>247</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,30 +18,33 @@
 	background-color: rgb(26, 26, 26);
 }</string>
   </property>
-  <widget class="QLineEdit" name="decKeyBox">
+  <widget class="QLineEdit" name="filePathBox">
    <property name="geometry">
     <rect>
-     <x>52</x>
+     <x>180</x>
      <y>30</y>
-     <width>151</width>
+     <width>351</width>
      <height>50</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">QLineEdit {
-	font: 600 15pt &quot;Verdana Pro Cond Semibold&quot;;
+	font: 600 11pt &quot;Verdana Pro Cond Semibold&quot;;
 	color: rgb(218, 218, 218);
 	border: 5px solid rgb(39, 39, 39);
 	background-color: rgb(59, 59, 59);
 	padding-left: 7px;
-	letter-spacing: 5px;
+	letter-spacing: 1px;
 }</string>
    </property>
    <property name="text">
     <string/>
    </property>
    <property name="alignment">
-    <set>Qt::AlignCenter</set>
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
    </property>
    <property name="placeholderText">
     <string/>
@@ -50,10 +53,10 @@
   <widget class="QPushButton" name="doneBtn">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>130</y>
-     <width>84</width>
-     <height>41</height>
+     <x>480</x>
+     <y>180</y>
+     <width>111</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -73,21 +76,47 @@ QPushButton::hover {
     <string>Done</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="browseBtn">
+  <widget class="QLabel" name="label1">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>130</y>
-     <width>84</width>
-     <height>41</height>
+     <y>30</y>
+     <width>141</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel {
+	font: 600 14pt &quot;Verdana Pro Cond Semibold&quot;;
+	color: rgb(218, 218, 218);
+	border: 5px solid rgb(39, 39, 39);
+	background-color: rgb(59, 59, 59);
+	letter-spacing: 1px;
+}</string>
+   </property>
+   <property name="text">
+    <string>File Path</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="browseBtn">
+   <property name="geometry">
+    <rect>
+     <x>550</x>
+     <y>49</y>
+     <width>51</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton {
-	font: 600 12pt &quot;Verdana Pro Cond Semibold&quot;;
+	font: 600 15pt &quot;Verdana Pro Cond Semibold&quot;;
 	color: rgb(218, 218, 218);
 	border: 5px solid rgb(39, 39, 39);
 	background-color: rgb(59, 59, 59);
+	padding-bottom: 3px;
 }
 
 QPushButton::hover {
@@ -95,7 +124,60 @@ QPushButton::hover {
 }</string>
    </property>
    <property name="text">
-    <string>Browse</string>
+    <string>...</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label2">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>120</y>
+     <width>141</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel {
+	font: 600 14pt &quot;Verdana Pro Cond Semibold&quot;;
+	color: rgb(218, 218, 218);
+	border: 5px solid rgb(39, 39, 39);
+	background-color: rgb(59, 59, 59);
+	letter-spacing: 1px;
+}</string>
+   </property>
+   <property name="text">
+    <string>Key Code</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="decKeyBox">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>120</y>
+     <width>141</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+	font: 600 14pt &quot;Verdana Pro Cond Semibold&quot;;
+	color: rgb(218, 218, 218);
+	border: 5px solid rgb(39, 39, 39);
+	background-color: rgb(59, 59, 59);
+	letter-spacing: 5px;
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="placeholderText">
+    <string/>
    </property>
   </widget>
  </widget>

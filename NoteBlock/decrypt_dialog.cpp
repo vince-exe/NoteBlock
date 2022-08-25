@@ -1,6 +1,9 @@
 #include "decrypt_dialog.h"
 #include "ui_decrypt_dialog.h"
 
+/* forms */
+#include "open_file_dialog.h"
+
 DecryptDialog::DecryptDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DecryptDialog) {
@@ -21,11 +24,11 @@ void DecryptDialog::on_decKeyBox_textChanged(const QString &arg1) {
 
 /* decrypt button clicked */
 void DecryptDialog::on_browseBtn_clicked() {
-
+    ;
 }
 
 /* done button clicked */
 void DecryptDialog::on_doneBtn_clicked() {
-
+    ;
 }
 
