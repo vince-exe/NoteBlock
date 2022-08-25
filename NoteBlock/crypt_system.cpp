@@ -6,6 +6,8 @@ int CryptSystem::privateKey;
 
 bool CryptSystem::criptedStatus;
 
+bool CryptSystem::decryptStatus;
+
 CryptSystem::CryptSystem() {};
 
 std::string CryptSystem::crypt(std::string message, int key) {

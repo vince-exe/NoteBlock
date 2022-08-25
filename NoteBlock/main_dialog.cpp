@@ -83,6 +83,14 @@ void MainDialog::on_openSaveBtn_clicked() {
     QFont newFont = QFont(Options::defaultFontStyle);
     ui->textBox->setStyleSheet(noteBookStyleSheet + "font-family: " + newFont.family() + "; font-style: normal" + "; font-size: " + QString::number(Options::defaultFontSize) + "pt;" + "color: " + Options::defaultTextColor + ";background-color: " + Options::defaultBackColor);
 
+    if(CryptSystem::decryptStatus) {
+        CryptSystem::decryptStatus = false;
+        messageBuffer = "";
+
+        ui->textBox->setPlainText(QString::fromStdString(messageBuffer));
+        return;
+    }
+
     if(OptionsDialog::fileCreated) {
         ui->textBox->clear();
         OptionsDialog::fileCreated = false;

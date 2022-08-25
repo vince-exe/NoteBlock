@@ -17,6 +17,8 @@ public:
 
     static bool criptedStatus;
 
+    static bool decryptStatus;
+
     /* function to crypt a message using the Giulio Cesare cripation system */
     static std::string crypt(std::string message, int key);
 

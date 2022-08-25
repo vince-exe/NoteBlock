@@ -160,6 +160,29 @@ void OptionsMenuDialog::on_cryptBtn_clicked() {
 
 /* decrypt a file */
 void OptionsMenuDialog::on_decryptBtn_clicked() {
+    if(OpenFileDialog::fileOpened) {
+        QMessageBox confirmBox;
+        QAbstractButton* noBtn;
+
+        confirmBox.setText(tr("The application will close the opened file, do you want to save the changes?"));
+        confirmBox.addButton(tr("Yes"), QMessageBox::YesRole);
+        noBtn = confirmBox.addButton(tr("No"), QMessageBox::YesRole);
+
+        confirmBox.exec();
+        if(!(confirmBox.clickedButton() == noBtn)) {
+            FILE* f = fopen(OpenFileDialog::filePath.toStdString().c_str(), "w");
+            if(!f) {
+                MsgBoxHandler::errorMessage("Error", "The application has failed to save the changes");
+            }
+            else {
+                FileHelper::storeInformations(f, MainDialog::messageBuffer);
+                fclose(f);
+            }
+        }
+        OpenFileDialog::fileOpened = false;
+    }
+    CryptSystem::decryptStatus = true;
+
     DecryptDialog decryptDialog;
     decryptDialog.setModal(true);
     decryptDialog.show();
