@@ -14,6 +14,7 @@
 #include "options_dialog.h"
 #include "open_file_dialog.h"
 #include "open_file_dialog.h"
+#include "decrypt_dialog.h"
 
 OptionsMenuDialog::OptionsMenuDialog(QWidget *parent) :
     QDialog(parent),
@@ -154,10 +155,13 @@ void OptionsMenuDialog::on_cryptBtn_clicked() {
     MsgBoxHandler::infoMessage("Success", "The application has successfully cripted the file, it has been generated a file that contain the key to decrypt the file in the same directory, keep it private");
     CryptSystem::criptedStatus = true;
 
-    return;
+    this->close(); return;
 }
 
 /* decrypt a file */
 void OptionsMenuDialog::on_decryptBtn_clicked() {
-
+    DecryptDialog decryptDialog;
+    decryptDialog.setModal(true);
+    decryptDialog.show();
+    decryptDialog.exec();
 }

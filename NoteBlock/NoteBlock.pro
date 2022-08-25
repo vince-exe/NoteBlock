@@ -11,6 +11,7 @@ CONFIG += c++17
 SOURCES += \
     color_picker_dialog.cpp \
     crypt_system.cpp \
+    decrypt_dialog.cpp \
     file_helper.cpp \
     main.cpp \
     main_dialog.cpp \
@@ -25,6 +26,7 @@ SOURCES += \
 HEADERS += \
     color_picker_dialog.h \
     crypt_system.h \
+    decrypt_dialog.h \
     file_helper.h \
     main_dialog.h \
     msg_box_handler.h \
@@ -37,6 +39,7 @@ HEADERS += \
 
 FORMS += \
     color_picker_dialog.ui \
+    decrypt_dialog.ui \
     main_dialog.ui \
     open_file_dialog.ui \
     options_dialog.ui \
