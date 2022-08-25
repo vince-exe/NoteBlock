@@ -4,8 +4,8 @@
 #include <iostream>
 
 #include "utilities.h"
-
 #include "options.h"
+#include "file_helper.h"
 
 /* forms */
 #include "color_picker_dialog.h"
@@ -82,7 +82,7 @@ void OptionsDialog::on_resetBtn_clicked() {
 
 /* done button */
 void OptionsDialog::on_doneBtn_clicked() {
-    if(!IsPathExist(ui->defaultPath->text().toStdString())) {
+    if(!FileHelper::IsPathExist(ui->defaultPath->text().toStdString())) {
         warningMessage("Warning", "The entered path doesn't exist");
         ui->defaultPath->setText(Options::defaultPathOption);
         return;

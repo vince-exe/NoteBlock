@@ -90,6 +90,10 @@ void MainDialog::on_openSaveBtn_clicked() {
 
     if(CryptSystem::criptedStatus) {
         CryptSystem::criptedStatus = false;
+        OpenFileDialog::fileOpened = false;
+
+        messageBuffer = "";
+        ui->textBox->setPlainText(QString::fromStdString(messageBuffer));
         return;
     }
 

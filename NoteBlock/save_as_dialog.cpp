@@ -10,6 +10,7 @@
 #include "utilities.h"
 #include "options_dialog.h"
 #include "options.h"
+#include "file_helper.h"
 
 #include "main_dialog.h"
 
@@ -23,15 +24,9 @@ bool SaveAsDialog::cancelBtnPressed = false;
 
 QString SaveAsDialog::selOption;
 
-void makePathCorrect(QString* path) {
-    for(int i = 0; i < int(path->length()); i++) {
-        if(path[i] == '/') { path[i] = '\\'; }
-    }
-}
-
 void SaveAsDialog::keyPressEvent(QKeyEvent *event) {
    if(event->key() == Qt::Key_Return && ui->pathBox->hasFocus())  {
-      if(IsPathExist(ui->pathBox->text().toStdString())) {
+      if(FileHelper::IsPathExist(ui->pathBox->text().toStdString())) {
           dirmodel->setRootPath(ui->pathBox->text());
           ui->treeView->setRootIndex(dirmodel->index(ui->pathBox->text()));
       }
@@ -89,7 +84,7 @@ void SaveAsDialog::on_fileNameBox_textChanged(const QString &arg1) {
 
 /* go to the searched path */
 void SaveAsDialog::on_goBtn_clicked() {
-    if(IsPathExist(ui->pathBox->text().toStdString())) {
+    if(FileHelper::IsPathExist(ui->pathBox->text().toStdString())) {
         dirmodel->setRootPath(ui->pathBox->text());
         ui->treeView->setRootIndex(dirmodel->index(ui->pathBox->text()));
     }
@@ -137,7 +132,7 @@ void SaveAsDialog::on_doneBtn_clicked() {
     }
 
     /* store the content in the file */
-    storeInformations(f, MainDialog::messageBuffer);
+    FileHelper::storeInformations(f, MainDialog::messageBuffer);
     fclose(f);
 
     ui->pathBox->setText(Options::defaultPathOption);

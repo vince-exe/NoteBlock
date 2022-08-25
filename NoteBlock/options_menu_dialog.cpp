@@ -5,6 +5,7 @@
 #include "main_dialog.h"
 #include "options.h"
 #include "crypt_system.h"
+#include "file_helper.h"
 
 /* forms */
 #include "save_as_dialog.h"
@@ -44,7 +45,7 @@ void OptionsMenuDialog::on_saveBtn_clicked() {
         }
 
         /* store the informations in the opened file */
-        storeInformations(f, MainDialog::messageBuffer);
+        FileHelper::storeInformations(f, MainDialog::messageBuffer);
         fclose(f);
 
         infoMessage("Success", "Successfully saved the file");
@@ -126,15 +127,15 @@ void OptionsMenuDialog::on_cryptBtn_clicked() {
         return;
     }
 
-    storeInformations(f, MainDialog::messageBuffer);
+    FileHelper::storeInformations(f, MainDialog::messageBuffer);
     fclose(f);
 
     /* get the name of the cripted file without .txt */
-    std::string criptedFileName = getFileName(OpenFileDialog::filePath.toStdString());
+    std::string criptedFileName = FileHelper::getFileName(OpenFileDialog::filePath.toStdString());
     criptedFileName = criptedFileName.erase(criptedFileName.find('.'), criptedFileName.length());
 
     /* get the name of the directory without the file name */
-    std::string dirPath = getDirName(OpenFileDialog::filePath.toStdString());
+    std::string dirPath = FileHelper::getDirName(OpenFileDialog::filePath.toStdString());
 
     /* construct the path of the decryption key */
     std::string decKeyPath = dirPath + "/" + "pri_key_for_" + criptedFileName + ".txt";

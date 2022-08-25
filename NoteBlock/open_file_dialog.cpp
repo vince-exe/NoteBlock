@@ -3,10 +3,11 @@
 
 #include "options.h"
 #include "utilities.h"
+#include "file_helper.h"
 
+/* forms */
 #include "save_as_utilities.h"
 #include "save_as_dialog.h"
-
 #include "main_dialog.h"
 
 bool OpenFileDialog::fileOpened = false;
@@ -57,7 +58,7 @@ void OpenFileDialog::on_resetPathBtn_clicked() {
 
 
 void OpenFileDialog::on_browseBtn_clicked() {
-    if(IsPathExist(ui->pathBox->text().toStdString())) {
+    if(FileHelper::IsPathExist(ui->pathBox->text().toStdString())) {
         dirFilemodel->setRootPath(ui->pathBox->text());
         ui->treeView->setRootIndex(dirFilemodel->index(ui->pathBox->text()));
     }
@@ -132,7 +133,7 @@ void OpenFileDialog::on_openBtn_clicked() {
     const QString &filePath = ui->pathBox->text();
 
     /* check if the file exist and if is effectively a file */
-    if(!isFileExist(filePath)) {
+    if(!FileHelper::isFileExist(filePath)) {
         warningMessage("Warning", "Select a valid file");
         return;
     }
@@ -144,7 +145,7 @@ void OpenFileDialog::on_openBtn_clicked() {
     }
 
     /* read the informations from the file and store it in the buffer */
-    readOpenInformations(f, MainDialog::messageBuffer);
+    FileHelper::readInformations(f, MainDialog::messageBuffer);
     OpenFileDialog::filePath = filePath;
     OpenFileDialog::fileOpened = true;
 
