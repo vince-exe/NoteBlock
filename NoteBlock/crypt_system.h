@@ -20,10 +20,10 @@ public:
     static bool decryptStatus;
 
     /* function to crypt a message using the Giulio Cesare cripation system */
-    static std::string crypt(std::string message, int key);
+    static void crypt(std::string message, int key, FILE* f);
 
     /* function to decrypt a message */
-    static std::string decrypt(std::string message, int key);
+    static std::string decrypt(int key, FILE* f);
 
     /* function to generate a random key */
     static void generateKey();

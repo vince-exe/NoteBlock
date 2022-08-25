@@ -20,7 +20,7 @@ private slots:
 
     void on_browseBtn_clicked();
 
-    void on_doneBtn_clicked();
+    void on_decryptBtn_clicked();
 
 private:
     Ui::DecryptDialog *ui;

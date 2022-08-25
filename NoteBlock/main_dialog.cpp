@@ -85,7 +85,6 @@ void MainDialog::on_openSaveBtn_clicked() {
 
     if(CryptSystem::decryptStatus) {
         CryptSystem::decryptStatus = false;
-        messageBuffer = "";
 
         ui->textBox->setPlainText(QString::fromStdString(messageBuffer));
         return;

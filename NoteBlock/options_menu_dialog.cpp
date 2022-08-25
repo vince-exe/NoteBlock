@@ -121,7 +121,6 @@ void OptionsMenuDialog::on_cryptBtn_clicked() {
 
     /* generate the key and crypt the message */
     CryptSystem::generateKey();
-    MainDialog::messageBuffer = CryptSystem::crypt(MainDialog::messageBuffer, CryptSystem::getKey());
     MainDialog::messageBuffer.append("\n");
 
     FILE* f = fopen(OpenFileDialog::filePath.toStdString().c_str(), "w");
@@ -129,8 +128,8 @@ void OptionsMenuDialog::on_cryptBtn_clicked() {
         MsgBoxHandler::errorMessage("Error", "The application has failed to crypt the file");
         return;
     }
-
-    FileHelper::storeInformations(f, MainDialog::messageBuffer);
+    /* crypt the informations inside the file */
+    CryptSystem::crypt(MainDialog::messageBuffer, CryptSystem::getKey(), f);
     fclose(f);
 
     /* get the name of the cripted file without .txt */
@@ -181,10 +180,10 @@ void OptionsMenuDialog::on_decryptBtn_clicked() {
         }
         OpenFileDialog::fileOpened = false;
     }
-    CryptSystem::decryptStatus = true;
-
     DecryptDialog decryptDialog;
     decryptDialog.setModal(true);
     decryptDialog.show();
     decryptDialog.exec();
+
+    this->close(); return;
 }

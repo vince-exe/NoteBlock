@@ -1,6 +1,8 @@
 #include "crypt_system.h"
 
 #include <random>
+#include <QString>
+#include <QDebug>
 
 int CryptSystem::privateKey;
 
@@ -10,22 +12,23 @@ bool CryptSystem::decryptStatus;
 
 CryptSystem::CryptSystem() {};
 
-std::string CryptSystem::crypt(std::string message, int key) {
-    std::string msg;
+void CryptSystem::crypt(std::string message, int key, FILE* f) {
     for(int i = 0; i < int(message.length()); i++) {
-        msg += message[i] + key;
+        putc(message[i] + key, f);
     }
-
-    return msg;
 }
 
-std::string CryptSystem::decrypt(std::string message, int key) {
-    std::string msg;
-    for(int i = 0; i < int(message.length()); i++) {
-        msg += message[i] - key;
+std::string CryptSystem::decrypt(int key, FILE* f) {
+    std::string decMsg;
+    char buffer[1024];
+
+    while(fgets(buffer, 1024, f)) {
+        for(int i = 0; i < strlen(buffer); i++) {
+            decMsg.push_back(buffer[i] - key);
+        }
     }
 
-    return msg;
+    return decMsg;
 }
 
 void CryptSystem::generateKey() {

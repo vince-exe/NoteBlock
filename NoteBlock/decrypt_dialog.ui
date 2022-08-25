@@ -50,12 +50,12 @@
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="doneBtn">
+  <widget class="QPushButton" name="decryptBtn">
    <property name="geometry">
     <rect>
-     <x>480</x>
+     <x>470</x>
      <y>180</y>
-     <width>111</width>
+     <width>121</width>
      <height>51</height>
     </rect>
    </property>
@@ -65,7 +65,7 @@
 	color: rgb(218, 218, 218);
 	border: 5px solid rgb(39, 39, 39);
 	background-color: rgb(59, 59, 59);
-	letter-spacing: 1px;
+	letter-spacing: 1.5px;
 }
 
 QPushButton::hover {
@@ -73,7 +73,7 @@ QPushButton::hover {
 }</string>
    </property>
    <property name="text">
-    <string>Done</string>
+    <string>Decrypt</string>
    </property>
   </widget>
   <widget class="QLabel" name="label1">
