@@ -1,11 +1,13 @@
 #include "options_menu_dialog.h"
 #include "ui_options_menu_dialog.h"
 
-#include "utilities.h"
+#include <QMessageBox>
+
 #include "main_dialog.h"
 #include "options.h"
 #include "crypt_system.h"
 #include "file_helper.h"
+#include "msg_box_handler.h"
 
 /* forms */
 #include "save_as_dialog.h"
@@ -40,7 +42,7 @@ void OptionsMenuDialog::on_saveBtn_clicked() {
     if(OpenFileDialog::fileOpened) {
         FILE* f = fopen(OpenFileDialog::filePath.toStdString().c_str(), "w");
         if(!f) {
-            errorBox("Error", "The application has failed to save the file");
+            MsgBoxHandler::errorMessage("Error", "The application has failed to save the file");
             return;
         }
 
@@ -48,11 +50,11 @@ void OptionsMenuDialog::on_saveBtn_clicked() {
         FileHelper::storeInformations(f, MainDialog::messageBuffer);
         fclose(f);
 
-        infoMessage("Success", "Successfully saved the file");
+        MsgBoxHandler::infoMessage("Success", "Successfully saved the file");
         return;
     }
     else {
-        warningMessage("Warning", "This is a new file, so you have to select the 'save as' option to save it");
+        MsgBoxHandler::warningMessage("Warning", "This is a new file, so you have to select the 'save as' option to save it");
         return;
     }
 }
@@ -102,7 +104,7 @@ void OptionsMenuDialog::on_optionsBtn_clicked() {
 /* crypt a file */
 void OptionsMenuDialog::on_cryptBtn_clicked() {
     if(!OpenFileDialog::fileOpened) {
-        warningMessage("Warning", "You have to open a file to crypt it");
+        MsgBoxHandler::warningMessage("Warning", "You have to open a file to crypt it");
         return;
     }
 
@@ -123,7 +125,7 @@ void OptionsMenuDialog::on_cryptBtn_clicked() {
 
     FILE* f = fopen(OpenFileDialog::filePath.toStdString().c_str(), "w");
     if(!f) {
-        errorBox("Error", "The application has failed to crypt the file");
+        MsgBoxHandler::errorMessage("Error", "The application has failed to crypt the file");
         return;
     }
 
@@ -143,13 +145,13 @@ void OptionsMenuDialog::on_cryptBtn_clicked() {
     /* store the key in the same path of the cripted file */
     f = fopen(decKeyPath.c_str(), "w");
     if(!f) {
-        errorBox("Error", "The application has failed to crypt the file");
+        MsgBoxHandler::errorMessage("Error", "The application has failed to crypt the file");
         return;
     }
     fprintf(f, "%d\n", CryptSystem::getKey());
     fclose(f);
 
-    infoMessage("Success", "The application has successfully cripted the file, it has been generated a file that contain the key to decrypt the file in the same directory, keep it private");
+    MsgBoxHandler::infoMessage("Success", "The application has successfully cripted the file, it has been generated a file that contain the key to decrypt the file in the same directory, keep it private");
     CryptSystem::criptedStatus = true;
 
     return;

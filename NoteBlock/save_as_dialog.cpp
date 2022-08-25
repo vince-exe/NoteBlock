@@ -4,6 +4,7 @@
 #include <QKeyEvent>
 #include <QModelIndex>
 #include <QDir>
+#include <QMessageBox>
 
 #include <iostream>
 
@@ -11,7 +12,7 @@
 #include "options_dialog.h"
 #include "options.h"
 #include "file_helper.h"
-
+#include "msg_box_handler.h"
 #include "main_dialog.h"
 
 /* forms */
@@ -31,7 +32,7 @@ void SaveAsDialog::keyPressEvent(QKeyEvent *event) {
           ui->treeView->setRootIndex(dirmodel->index(ui->pathBox->text()));
       }
       else {
-          warningMessage("Warning", "Please enter a correct path");
+          MsgBoxHandler::warningMessage("Warning", "Please enter a correct path");
           ui->pathBox->setText(Options::defaultPathOption);
           ui->treeView->setRootIndex(dirmodel->index(Options::defaultPathOption));
           return;
@@ -89,7 +90,7 @@ void SaveAsDialog::on_goBtn_clicked() {
         ui->treeView->setRootIndex(dirmodel->index(ui->pathBox->text()));
     }
     else {
-        warningMessage("Warning", "Please enter a correct path");
+        MsgBoxHandler::warningMessage("Warning", "Please enter a correct path");
         ui->pathBox->setText(Options::defaultPathOption);
         ui->treeView->setRootIndex(dirmodel->index(Options::defaultPathOption));
         return;
@@ -98,7 +99,7 @@ void SaveAsDialog::on_goBtn_clicked() {
 
 void SaveAsDialog::on_doneBtn_clicked() {
     if(!ui->fileNameBox->text().length()) {
-        warningMessage("Warning", "File name cannot be empty");
+        MsgBoxHandler::warningMessage("Warning", "File name cannot be empty");
         return;
     }
 
@@ -112,7 +113,7 @@ void SaveAsDialog::on_doneBtn_clicked() {
 
     /* check if the file already exist */
     if(f) {
-        warningMessage("Warning", "There is already a file named " + ui->fileNameBox->text().toStdString());
+        MsgBoxHandler::warningMessage("Warning", "There is already a file named " + ui->fileNameBox->text().toStdString());
         ui->fileNameBox->clear();
 
         OptionsDialog::fileCreated = false;
@@ -122,7 +123,7 @@ void SaveAsDialog::on_doneBtn_clicked() {
 
     f = fopen(fullPath.c_str(), "w");
     if(!f) {
-        warningMessage("Warning", "The application can't create the file in the given path");
+        MsgBoxHandler::warningMessage("Warning", "The application can't create the file in the given path");
         ui->fileNameBox->clear();
         ui->pathBox->setText(Options::defaultPathOption);
         ui->treeView->setRootIndex(dirmodel->index(Options::defaultPathOption));
@@ -139,7 +140,7 @@ void SaveAsDialog::on_doneBtn_clicked() {
     ui->treeView->setRootIndex(dirmodel->index(Options::defaultPathOption));
     ui->fileNameBox->clear();
 
-    infoMessage("Success", "Successfully saved the file");
+    MsgBoxHandler::infoMessage("Success", "Successfully saved the file");
     OptionsDialog::fileCreated = true;
     this->close();
 }
@@ -156,7 +157,7 @@ void SaveAsDialog::on_doOptionBtn_clicked() {
     QAbstractButton* noBtn;
 
     if (indexes.size() <= 0) {
-        warningMessage("Warning", "Select a directory");
+        MsgBoxHandler::warningMessage("Warning", "Select a directory");
         return;
     }
 
@@ -174,14 +175,14 @@ void SaveAsDialog::on_doOptionBtn_clicked() {
             if(SaveAsDialog::cancelBtnPressed) { return; }
 
             if(QDir((ui->pathBox->text() + "\\" + SaveAsDialog::dirName)).exists()) {
-                warningMessage("Warning", "There is already a folder with this name");
+                MsgBoxHandler::warningMessage("Warning", "There is already a folder with this name");
                 return;
             }
 
             dirmodel->mkdir(index, SaveAsDialog::dirName);
             ui->treeView->setModel(dirmodel);
 
-            infoMessage("Info", "New folder created");
+            MsgBoxHandler::infoMessage("Info", "New folder created");
             break;
 
         /* Delete Folder */

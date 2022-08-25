@@ -10,10 +10,10 @@
 
 #include "options.h"
 #include "crypt_system.h"
+#include "msg_box_handler.h"
 
 /* forms */
 #include "options_menu_dialog.h"
-
 #include "options_dialog.h"
 #include "utilities.h"
 #include "open_file_dialog.h"
@@ -43,7 +43,7 @@ MainDialog::MainDialog(QWidget *parent) :
     FILE* f = fopen(Options::sysCurrentOptionsPath, "r");
 
     if(!f) {
-        errorBox("Error", "The application failed to load the system files");
+        MsgBoxHandler::errorMessage("Error", "The application failed to load the system files");
         exit(-1);
     }
 

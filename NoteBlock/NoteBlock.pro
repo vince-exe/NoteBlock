@@ -14,26 +14,26 @@ SOURCES += \
     file_helper.cpp \
     main.cpp \
     main_dialog.cpp \
+    msg_box_handler.cpp \
     open_file_dialog.cpp \
     options.cpp \
     options_dialog.cpp \
     options_menu_dialog.cpp \
     save_as_dialog.cpp \
-    save_as_utilities.cpp \
-    utilities.cpp
+    save_as_utilities.cpp
 
 HEADERS += \
     color_picker_dialog.h \
     crypt_system.h \
     file_helper.h \
     main_dialog.h \
+    msg_box_handler.h \
     open_file_dialog.h \
     options.h \
     options_dialog.h \
     options_menu_dialog.h \
     save_as_dialog.h \
-    save_as_utilities.h \
-    utilities.h
+    save_as_utilities.h
 
 FORMS += \
     color_picker_dialog.ui \

@@ -3,9 +3,12 @@
 
 #include <iostream>
 
+#include <QMessageBox>
+
 #include "utilities.h"
 #include "options.h"
 #include "file_helper.h"
+#include "msg_box_handler.h"
 
 /* forms */
 #include "color_picker_dialog.h"
@@ -56,7 +59,7 @@ void OptionsDialog::on_resetBtn_clicked() {
     /* read from the default file system */
     FILE* f = fopen(Options::sysDefaultOptionsPath, "r");
     if(!f) {
-        errorBox("Error", "The application has failed to load the system files");
+        MsgBoxHandler::errorMessage("Error", "The application has failed to load the system files");
         return;
     }
     Options::readOptions(f);
@@ -65,7 +68,7 @@ void OptionsDialog::on_resetBtn_clicked() {
     /* store the default informations in the current options system file */
     f = fopen(Options::sysCurrentOptionsPath, "w");
     if(!f) {
-        errorBox("Error", "The application has failed to load the system files");
+        MsgBoxHandler::errorMessage("Error", "The application has failed to load the system files");
         return;
     }
 
@@ -83,7 +86,7 @@ void OptionsDialog::on_resetBtn_clicked() {
 /* done button */
 void OptionsDialog::on_doneBtn_clicked() {
     if(!FileHelper::IsPathExist(ui->defaultPath->text().toStdString())) {
-        warningMessage("Warning", "The entered path doesn't exist");
+        MsgBoxHandler::warningMessage("Warning", "The entered path doesn't exist");
         ui->defaultPath->setText(Options::defaultPathOption);
         return;
     }
@@ -95,14 +98,14 @@ void OptionsDialog::on_doneBtn_clicked() {
 
     FILE* f = fopen(Options::sysCurrentOptionsPath, "w");
     if(!f) {
-        errorBox("Error", "The application has failed to load the system files");
+        MsgBoxHandler::errorMessage("Error", "The application has failed to load the system files");
         return;
     }
 
     Options::storeOptions(f);
     fclose(f);
 
-    infoMessage("Success", "Successfully updated the options");
+    MsgBoxHandler::infoMessage("Success", "Successfully updated the options");
     this->close(); return;
 }
 

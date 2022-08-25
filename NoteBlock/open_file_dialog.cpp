@@ -1,9 +1,12 @@
 #include "open_file_dialog.h"
 #include "ui_open_file_dialog.h"
 
+#include <QMessageBox>
+
 #include "options.h"
 #include "utilities.h"
 #include "file_helper.h"
+#include "msg_box_handler.h"
 
 /* forms */
 #include "save_as_utilities.h"
@@ -47,7 +50,6 @@ void OpenFileDialog::on_treeView_clicked(const QModelIndex &index) {
     ui->pathBox->setText(dirFilemodel->filePath(index));
 }
 
-
 void OpenFileDialog::on_resetPathBtn_clicked() {
     /* set the default path as root path */
     dirFilemodel->setRootPath(Options::defaultPathOption);
@@ -56,14 +58,13 @@ void OpenFileDialog::on_resetPathBtn_clicked() {
     ui->pathBox->setText(Options::defaultPathOption);
 }
 
-
 void OpenFileDialog::on_browseBtn_clicked() {
     if(FileHelper::IsPathExist(ui->pathBox->text().toStdString())) {
         dirFilemodel->setRootPath(ui->pathBox->text());
         ui->treeView->setRootIndex(dirFilemodel->index(ui->pathBox->text()));
     }
     else {
-        warningMessage("Warning", "Please enter a correct path");
+        MsgBoxHandler::warningMessage("Warning", "Please enter a correct path");
         ui->pathBox->setText(Options::defaultPathOption);
         ui->treeView->setRootIndex(dirFilemodel->index(Options::defaultPathOption));
         return;
@@ -81,7 +82,7 @@ void OpenFileDialog::on_doOptionBtn_clicked() {
     QAbstractButton* noBtn;
 
     if (indexes.size() <= 0) {
-        warningMessage("Warning", "Select a directory");
+        MsgBoxHandler::warningMessage("Warning", "Select a directory");
         return;
     }
 
@@ -99,14 +100,14 @@ void OpenFileDialog::on_doOptionBtn_clicked() {
             if(SaveAsDialog::cancelBtnPressed) { return; }
 
             if(QDir((ui->pathBox->text() + "\\" + SaveAsDialog::dirName)).exists()) {
-                warningMessage("Warning", "There is already a folder with this name");
+                MsgBoxHandler::warningMessage("Warning", "There is already a folder with this name");
                 return;
             }
 
             dirFilemodel->mkdir(index, SaveAsDialog::dirName);
             ui->treeView->setModel(dirFilemodel);
 
-            infoMessage("Info", "New folder created");
+            MsgBoxHandler::infoMessage("Info", "New folder created");
             break;
 
         /* Delete Folder/File */
@@ -134,13 +135,13 @@ void OpenFileDialog::on_openBtn_clicked() {
 
     /* check if the file exist and if is effectively a file */
     if(!FileHelper::isFileExist(filePath)) {
-        warningMessage("Warning", "Select a valid file");
+        MsgBoxHandler::warningMessage("Warning", "Select a valid file");
         return;
     }
 
     FILE* f = fopen(filePath.toStdString().c_str(), "r");
     if(!f) {
-        errorBox("Error", "The application failed to load the file");
+        MsgBoxHandler::errorMessage("Error", "The application failed to load the file");
         return;
     }
 

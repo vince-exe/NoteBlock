@@ -4,6 +4,9 @@
 #include "utilities.h"
 #include "options_dialog.h"
 #include "options.h"
+#include "msg_box_handler.h"
+
+#include <QMessageBox>
 
 QString getRGB(int r, int g, int b) {
     QString color = "rgb(" + QString::number(r) + "," + QString::number(g) + "," + QString::number(b) + ")";
@@ -133,7 +136,7 @@ void ColorPickerDialog::on_resetBtn_clicked() {
 
     FILE* f = fopen(Options::sysDefaultOptionsPath, "r");
     if(!f) {
-        errorBox("Error", "Fatal Error");
+        MsgBoxHandler::errorMessage("Error", "Fatal Error");
         return;
     }
 
@@ -143,7 +146,7 @@ void ColorPickerDialog::on_resetBtn_clicked() {
 
     f = fopen(Options::sysCurrentOptionsPath, "w");
     if(!f) {
-        errorBox("Error", "Fatal Error");
+        MsgBoxHandler::errorMessage("Error", "Fatal Error");
         return;
     }
 
@@ -160,7 +163,7 @@ void ColorPickerDialog::on_doneBn_clicked() {
     /* store the informations in the file */
     FILE* f = fopen(Options::sysCurrentOptionsPath, "w");
     if(!f) {
-        errorBox("Error", "The application has failed to load the system files");
+        MsgBoxHandler::errorMessage("Error", "The application has failed to load the system files");
         return;
     }
 
